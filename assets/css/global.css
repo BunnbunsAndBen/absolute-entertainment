@@ -1,0 +1,19 @@
+nav.navbar {
+    padding: .5rem 1rem;
+}
+
+nav.navbar {
+    border-radius: 0;
+}
+
+.hero {
+    text-align: center;
+    padding: 8rem 12px 7rem 12px;
+    background-size: cover;
+}
+
+.hero .title {
+    font-family: 'Archivo Black', Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    text-shadow: 0 0 14px rgba(22, 22, 22, 0.65);
+}
