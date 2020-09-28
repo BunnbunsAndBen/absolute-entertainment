@@ -8,12 +8,14 @@ nav.navbar {
 
 .hero {
     text-align: center;
-    padding: 8rem 12px 7rem 12px;
+    padding: 9rem 12px 8rem 12px;
     background-size: cover;
 }
 
 .hero .title {
-    font-family: 'Archivo Black', Arial, Helvetica, sans-serif;
+    font-family: 'Signika', Arial, Helvetica, sans-serif;
     font-weight: 700;
+    font-size: 2.25rem;
+    margin-bottom: 2rem;
     text-shadow: 0 0 14px rgba(22, 22, 22, 0.65);
 }

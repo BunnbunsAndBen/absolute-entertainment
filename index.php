@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="./assets/css/global.css"/>
         <!-- Fonts -->
         <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-        <link href="https://fonts.googleapis.com/css2?family=Material+Icons&family=Roboto&family=Archivo+Black&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Material+Icons&family=Roboto&family=Signika:wght@700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.1.7/css/fork-awesome.min.css"/>
     </head>
     <body>
@@ -57,9 +57,22 @@
             </div>
         </nav>
 
-        <div class="hero" style="background: #21768c url('./assets/images/hero.jpg') center center;">
+        <!-- <div class="hero" style="background: #21768c url('./assets/images/hero.jpg') center center;">
             <h1 class="title has-text-white">Absolute Entertainment.</h1>
+        </div> -->
+
+        <section class="hero is-primary is-bold" style="background: #21768c url('./assets/images/hero.jpg') center center;">
+        <div class="hero-body">
+            <div class="container">
+            <h1 class="title">
+                Absolute Entertainment
+            </h1>
+            <h2 class="subtitle">
+                We do entertainment.
+            </h2>
+            </div>
         </div>
+        </section>
 
         <div class="container" style="margin-top: 2rem">
 
