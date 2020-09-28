@@ -13,13 +13,13 @@
 
             <div id="mainNavbar" class="navbar-menu">
                 <div class="navbar-start">
-                <a href="<?= $rootUrl ?>" class="navbar-item">
+                <a href="<?= $rootUrl ?>" class="navbar-item <?php echo ($pageTitle == 'Home') ? 'is-active' : ''; ?>">
                     Home
                 </a>
-                <a href="<?= $rootUrl ?>reviews/" class="navbar-item">
+                <a href="<?= $rootUrl ?>reviews/" class="navbar-item <?php echo ($pageTitle == 'Reviews') ? 'is-active' : ''; ?>">
                     Reviews
                 </a>
-                <a href="<?= $rootUrl ?>about/" class="navbar-item">
+                <a href="<?= $rootUrl ?>about/" class="navbar-item <?php echo ($pageTitle == 'About Us') ? 'is-active' : ''; ?>">
                     About
                 </a>
 
