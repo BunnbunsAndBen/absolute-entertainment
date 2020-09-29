@@ -38,7 +38,7 @@ $pageTitle = 'About Us';
 
             <div class="container main-container">
 
-                <!-- <h1 class="title">Absolute Entertainment</h1> -->
+                <h1 class="title has-text-white">We do entertainment.</h1>
 
             </div>
 

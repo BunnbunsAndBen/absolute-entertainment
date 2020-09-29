@@ -38,11 +38,93 @@ $pageTitle = 'Contact Us';
 
             <div class="container main-container">
 
-                <!-- <h1 class="title">Absolute Entertainment</h1> -->
+                <form class="form">
+
+                    <div class="field">
+                        <label class="label">Name</label>
+                        <div class="control has-icons-left">
+                            <input class="input" type="text" placeholder="John Doe" required autofocus>
+                            <span class="icon is-small is-left">
+                            <i class="fa fa-drivers-license"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Email</label>
+                        <div class="control has-icons-left">
+                            <input class="input" type="email" placeholder="me@example.com" required validate>
+                            <span class="icon is-small is-left">
+                            <i class="fa fa-envelope"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Phone number</label>
+                        <div class="control has-icons-left">
+                            <input class="input" type="tel" placeholder="(555) 1230-6942" validate>
+                            <span class="icon is-small is-left">
+                            <i class="fa fa-phone"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Date of event</label>
+                        <div class="control has-icons-left">
+                            <input class="input" type="date" placeholder="" validate required>
+                            <span class="icon is-small is-left">
+                            <i class="fa fa-calendar"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Location of event</label>
+                        <div class="control has-icons-left">
+                            <input class="input" type="text" placeholder="123 Street Town, State 12345 USA" required>
+                            <span class="icon is-small is-left">
+                            <i class="fa fa-building"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Payment options</label>
+                        <div class="control">
+                            <div class="select">
+                            <select required>
+                                <option>Select payment option</option>
+                                <option>Cash</option>
+                                <option>Check</option>
+                                <option>Credit Card</option>
+                            </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Extra info</label>
+                        <div class="control">
+                            <textarea class="textarea" placeholder="Message"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="field is-grouped">
+                        <div class="control">
+                            <button class="button is-link">Submit</button>
+                        </div>
+                        <!-- <div class="control">
+                            <button class="button is-link is-light">Cancel</button>
+                        </div> -->
+                    </div>
+
+                </form>
 
             </div>
 
-        </div>
+        </div><!-- /container -->
 
         <?php include($rootDir.'/footer.inc.php'); ?>
     </body>
