@@ -38,7 +38,37 @@ $pageTitle = 'Sign in';
 
             <div class="container main-container">
 
-                <!-- <h1 class="title">Absolute Entertainment</h1> -->
+                <form class="form ">
+
+                    <div class="field">
+                        <label class="label">Email</label>
+                        <div class="control has-icons-left">
+                            <input class="input" type="email" placeholder="me@example.com" required validate autofocus>
+                            <span class="icon is-small is-left">
+                            <i class="fa fa-envelope"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Password</label>
+                        <div class="control has-icons-left">
+                            <input class="input" type="password" placeholder="Password" required>
+                            <span class="icon is-small is-left">
+                            <i class="fa fa-key"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="field is-grouped is-grouped-right">
+                        <p class="control">
+                            <button type="submit" class="button is-link">
+                            Submit
+                            </button>
+                        </p>
+                    </div>
+
+                </form>
 
             </div>
 
