@@ -38,7 +38,7 @@ $pageTitle = 'Contact Us';
 
             <div class="container main-container">
 
-                <form class="form">
+                <form class="form box">
 
                     <div class="field">
                         <label class="label">Name</label>

@@ -38,7 +38,7 @@ $pageTitle = 'Sign in';
 
             <div class="container main-container">
 
-                <form class="form ">
+                <form class="form box">
 
                     <div class="field">
                         <label class="label">Email</label>
