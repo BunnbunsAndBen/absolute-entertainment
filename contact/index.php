@@ -111,13 +111,12 @@ $pageTitle = 'Contact Us';
                         </div>
                     </div>
 
-                    <div class="field is-grouped">
-                        <div class="control">
-                            <button class="button is-link">Submit</button>
-                        </div>
-                        <!-- <div class="control">
-                            <button class="button is-link is-light">Cancel</button>
-                        </div> -->
+                    <div class="field is-grouped is-grouped-right">
+                        <p class="control">
+                            <button type="submit" class="button is-link">
+                            Submit
+                            </button>
+                        </p>
                     </div>
 
                 </form>
