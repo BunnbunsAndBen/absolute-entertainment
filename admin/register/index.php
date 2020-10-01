@@ -14,7 +14,7 @@ if(!$loggedIn) {
 $pageTitle = 'Register User';
 
 $errorMsg = null;
-$errorMsgType = 'red';
+$errorMsgType = 'is-danger';
 
 $returnUrl = $_REQUEST['return'];
 
@@ -143,7 +143,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <div class="container main-container">
 
-                <form method="post" class="form box">
+                <?php if(isset($errorMsg)) { ?>
+                    <div class="notification width<?= $errorMsgType ?>" style="margin: 0 auto .75rem auto;"><?= $errorMsg ?></div>
+                <?php } ?>
+
+                <form method="post" class="form width box">
 
                     <div class="field">
                         <label class="label">Name</label>

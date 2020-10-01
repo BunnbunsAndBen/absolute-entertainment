@@ -45,7 +45,7 @@ if(!$loggedIn) {
 
             <div class="container main-container">
 
-                
+                <a href="./register/" class="is-link">Register</a>
 
             </div>
 

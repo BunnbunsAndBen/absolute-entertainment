@@ -8,7 +8,7 @@ include_once($rootDir.'/db.inc.php');
 $pageTitle = 'Sign in';
 
 $errorMsg = null;
-$errorMsgType = 'red';
+$errorMsgType = 'is-danger';
 
 $returnUrl = $_REQUEST['return'];
 
@@ -28,7 +28,7 @@ if($_GET['action'] == 'logout') {
 
 // logged in redirect
 if($_SESSION['auth']) {
-    $errorMsgType = 'green';
+    $errorMsgType = 'is-success';
     $errorMsg = 'Signed in!';
     $returnUrl = 'admin';
     header('Location: '.$rootUrl.$returnUrl);
@@ -78,7 +78,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['pfp'] = $data['pfp'];
             $_SESSION['type'] = $data['type'];
             //
-            $errorMsgType = 'green';
+            $errorMsgType = 'is-success';
             $errorMsg = 'Signed in!';
             header('Location: '.$rootUrl.$returnUrl);
             exit;
@@ -125,7 +125,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <div class="container main-container">
 
-                <form method="post" class="form box">
+                <?php if(isset($errorMsg)) { ?>
+                    <div class="notification width <?= $errorMsgType ?>" style="margin: 0 auto .75rem auto;"><?= $errorMsg ?></div>
+                <?php } ?>
+
+                <form method="post" class="form width box">
 
                     <div class="field">
                         <label class="label">Email</label>
