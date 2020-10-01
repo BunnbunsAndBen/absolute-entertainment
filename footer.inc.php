@@ -7,4 +7,4 @@
         </div>
     </footer>
 
-    <script src="<?= $rootAssetsUrl ?>/js/global.js"></script>
+    <script src="<?= $rootAssetsUrl ?>js/global.js"></script>
