@@ -1,9 +1,97 @@
 <?php
 
+error_reporting(E_ALL & ~E_NOTICE);
+
 include_once($_SERVER['DOCUMENT_ROOT'].'/global.inc.php');
+include_once($rootDir.'/db.inc.php');
 
 $pageTitle = 'Sign in';
 
+$errorMsg = null;
+$errorMsgType = 'red';
+
+$returnUrl = $_REQUEST['return'];
+
+// logout
+if($_GET['action'] == 'logout') {
+    $errorMsg = 'Logging out...';
+    $_SESSION['auth'] = false;
+    $_SESSION = array();
+    session_destroy();
+    header('Location: '.$rootUrl.$returnUrl);
+    exit;
+}
+
+// logged in redirect
+if($_SESSION['auth']) {
+    $errorMsgType = 'green';
+    $errorMsg = 'Signed in!';
+    header('Location: '.$rootUrl.$returnUrl);
+    exit;
+}
+
+$email = $password = "";
+$email_err = $password_err = "";
+
+// function to check if username exists
+function userExists($connection, $email) {
+    $stmt = $connection->prepare("SELECT 1 FROM users WHERE email=?");
+    $stmt->execute([$email]); 
+    return $stmt->fetchColumn();
+}
+
+// form sumbited
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    // Validate user exists
+    if(empty(trim($_POST["email"]))) {
+        $email_err = "Please enter an email.";
+    }elseif(!userExists($connection, $_POST['email'])) {
+        $email = trim($_POST["email"]);
+        $email_err = "User does not exist.";
+    }else {
+        $email = trim($_POST["email"]);
+    }
+
+    // Validate password
+    if(empty(trim($_POST['password']))) {
+        $password_err = "Please enter a password.";     
+    }else {
+        $password = trim($_POST['password']);
+    }
+
+    // check for any errors
+    if(empty($email_err) && empty($password_err)) {
+
+        //Check password by username
+        $sql = "SELECT id, username, email, pfp, password, type
+        FROM users
+        WHERE email = :email";
+        $statement = $connection->prepare($sql);
+        $statement->bindParam(':email', $username, PDO::FETCH_ASSOC);
+        $statement->execute();
+        $data = $statement->fetchAll(PDO::FETCH_ASSOC)[0];
+
+        if (password_verify($password, $data['password'])) {
+            //good, create session
+            $_SESSION['auth'] = true;
+            $_SESSION['username'] = $data['username'];
+            $_SESSION['email'] = $data['email'];
+            $_SESSION['pfp'] = $data['pfp'];
+            $_SESSION['type'] = $data['type'];
+            //
+            $errorMsgType = 'green';
+            $errorMsg = 'Signed in!';
+            header('Location: '.$rootUrl.$returnUrl);
+            exit;
+        }else {
+            //bad
+            $password_err = "Invalid password.";
+        }
+
+    }
+
+}
 ?>
 <!DOCTYPE html>
 <html lang="en" class="has-navbar-fixed-top">
@@ -11,6 +99,7 @@ $pageTitle = 'Sign in';
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title><?= $pageTitle ?> - <?= $siteTitle ?></title>
+        <meta name="description" content="<?= $siteDesc ?>">
         <link rel="icon" type="image/png" href="<?= $rootAssetsUrl ?>images/logo.png">
         <!-- Styles -->
         <link rel="stylesheet" href="<?= $rootAssetsUrl ?>css/default.css"/>
@@ -38,25 +127,27 @@ $pageTitle = 'Sign in';
 
             <div class="container main-container">
 
-                <form class="form box">
+                <form method="post" action="./" class="form box">
 
                     <div class="field">
                         <label class="label">Email</label>
                         <div class="control has-icons-left">
-                            <input class="input" type="email" placeholder="me@example.com" required validate autofocus>
+                            <input name="email" class="input <?php echo (!empty($email_err)) ? 'is-danger' : ''; ?>" type="email" placeholder="me@example.com" required validate <?php echo ((empty($email_err) && empty($password_err)) || !empty($email_err)) ? 'autofocus' : ''; ?>>
                             <span class="icon is-small is-left">
                             <i class="fa fa-envelope"></i>
                             </span>
+                            <?php echo (!empty($email_err)) ? '<p class="help is-danger">'.$email_err.'</p>' : ''; ?>
                         </div>
                     </div>
 
                     <div class="field">
                         <label class="label">Password</label>
                         <div class="control has-icons-left">
-                            <input class="input" type="password" placeholder="Password" required>
+                            <input name="password" class="input <?php echo (!empty($password_err)) ? 'is-danger' : ''; ?>" type="password" placeholder="Password" required <?php echo ((!empty($password_err) && empty($email_err)) || empty($email_err)) ? 'autofocus' : ''; ?>>
                             <span class="icon is-small is-left">
                             <i class="fa fa-key"></i>
                             </span>
+                            <?php echo (!empty($password_err)) ? '<p class="help is-danger">'.$password_err.'</p>' : ''; ?>
                         </div>
                     </div>
 

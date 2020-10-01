@@ -8,6 +8,7 @@ $rootAssetsUrl = $rootUrl.'assets/';
 
 // site vars
 $siteTitle = "Absolute Entertainment";
+$siteDesc = "We do entertainment. Check us out today!";
 
 // logged in?
 if(isset($_SESSION['auth'])) {

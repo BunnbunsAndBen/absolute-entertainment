@@ -11,6 +11,7 @@ $pageTitle = 'Home';
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title><?= $pageTitle ?> - <?= $siteTitle ?></title>
+        <meta name="description" content="<?= $siteDesc ?>">
         <link rel="icon" type="image/png" href="<?= $rootAssetsUrl ?>images/logo.png">
         <!-- Styles -->
         <link rel="stylesheet" href="<?= $rootAssetsUrl ?>css/default.css"/>
