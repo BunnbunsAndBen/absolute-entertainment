@@ -1,7 +1,7 @@
 <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
                 <div class="navbar-brand">
                     <a class="navbar-item" href="<?= $rootUrl ?>">
-                    <img class="logo" src="<?= $rootAssetsUrl ?>/images/logo-wide-white.png" height="64">
+                    <img class="logo" src="<?= $rootAssetsUrl ?>images/logo-wide-white.png" height="64">
                     </a>
 
                     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="mainNavbar">
