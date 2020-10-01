@@ -52,3 +52,12 @@ function pfpFromEmail($email, $default = 'mp') {
     $emailHash = emailHash($email);
     return pfpFromEmailHash($emailHash, $default);
 }
+
+// -- db functions -- //
+
+// function to check if email exists
+function emailExists($connection, $email) {
+    $stmt = $connection->prepare("SELECT 1 FROM users WHERE email=?");
+    $stmt->execute([$email]); 
+    return $stmt->fetchColumn();
+}

@@ -12,6 +12,10 @@ $errorMsgType = 'red';
 
 $returnUrl = $_REQUEST['return'];
 
+if(empty($returnUrl)) {
+    $returnUrl = 'admin';
+}
+
 // logout
 if($_GET['action'] == 'logout') {
     $errorMsg = 'Logging out...';
@@ -26,6 +30,7 @@ if($_GET['action'] == 'logout') {
 if($_SESSION['auth']) {
     $errorMsgType = 'green';
     $errorMsg = 'Signed in!';
+    $returnUrl = 'admin';
     header('Location: '.$rootUrl.$returnUrl);
     exit;
 }
@@ -33,20 +38,13 @@ if($_SESSION['auth']) {
 $email = $password = "";
 $email_err = $password_err = "";
 
-// function to check if username exists
-function userExists($connection, $email) {
-    $stmt = $connection->prepare("SELECT 1 FROM users WHERE email=?");
-    $stmt->execute([$email]); 
-    return $stmt->fetchColumn();
-}
-
 // form sumbited
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validate user exists
     if(empty(trim($_POST["email"]))) {
         $email_err = "Please enter an email.";
-    }elseif(!userExists($connection, $_POST['email'])) {
+    }elseif(!emailExists($connection, $_POST['email'])) {
         $email = trim($_POST["email"]);
         $email_err = "User does not exist.";
     }else {
@@ -64,18 +62,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     if(empty($email_err) && empty($password_err)) {
 
         //Check password by username
-        $sql = "SELECT id, username, email, pfp, password, type
+        $sql = "SELECT id, name, email, pfp, password, type
         FROM users
         WHERE email = :email";
         $statement = $connection->prepare($sql);
-        $statement->bindParam(':email', $username, PDO::FETCH_ASSOC);
+        $statement->bindParam(':email', $email, PDO::FETCH_ASSOC);
         $statement->execute();
         $data = $statement->fetchAll(PDO::FETCH_ASSOC)[0];
 
         if (password_verify($password, $data['password'])) {
             //good, create session
             $_SESSION['auth'] = true;
-            $_SESSION['username'] = $data['username'];
+            $_SESSION['name'] = $data['name'];
             $_SESSION['email'] = $data['email'];
             $_SESSION['pfp'] = $data['pfp'];
             $_SESSION['type'] = $data['type'];
@@ -127,12 +125,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <div class="container main-container">
 
-                <form method="post" action="./" class="form box">
+                <form method="post" class="form box">
 
                     <div class="field">
                         <label class="label">Email</label>
                         <div class="control has-icons-left">
-                            <input name="email" class="input <?php echo (!empty($email_err)) ? 'is-danger' : ''; ?>" type="email" placeholder="me@example.com" required validate <?php echo ((empty($email_err) && empty($password_err)) || !empty($email_err)) ? 'autofocus' : ''; ?>>
+                            <input name="email" class="input <?php echo (!empty($email_err)) ? 'is-danger' : ''; ?>" type="email" placeholder="me@example.com" value="<?= $email ?>" required validate <?php echo ((empty($email_err) && empty($password_err)) || !empty($email_err)) ? 'autofocus' : ''; ?>>
                             <span class="icon is-small is-left">
                             <i class="fa fa-envelope"></i>
                             </span>
