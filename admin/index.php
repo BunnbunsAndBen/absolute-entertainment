@@ -31,7 +31,7 @@ if(!$loggedIn) {
         
         <div class="pageHeight">
             
-            <?php include($rootDir.'/navbar.inc.php'); ?>
+            <?php include($rootDir.'/admin/navbar.inc.php'); ?>
 
             <section class="hero is-primary is-bold" style="background: #21768c url('<?= $rootAssetsUrl ?>images/hero.jpg') center center;">
             <div class="hero-body">
@@ -45,7 +45,8 @@ if(!$loggedIn) {
 
             <div class="container main-container">
 
-                <a href="./register/" class="is-link">Register</a>
+                <a href="./users/" class="button is-outlined is-link">User accounts</a>
+                <a href="./register/" class="button is-outlined is-link">Create user</a>
 
             </div>
 

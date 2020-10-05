@@ -7,26 +7,16 @@ include_once($rootDir.'/db.inc.php');
 
 // logged in?
 if(!$loggedIn) {
-    header('Location: '.$rootUrl.'login/?return=admin');
+    header('Location: '.$rootUrl.'login/?return=admin/users');
     exit;
 }
 
-$pageTitle = 'Register User';
+$pageTitle = 'Users';
 
 $errorMsg = null;
 $errorMsgType = 'is-danger';
 
 $returnUrl = $_REQUEST['return'];
-
-// logout
-if($_GET['action'] == 'logout') {
-    $errorMsg = 'Logging out...';
-    $_SESSION['auth'] = false;
-    $_SESSION = array();
-    session_destroy();
-    header('Location: '.$rootUrl.$returnUrl);
-    exit;
-}
 
 $name = $email = $password = $confirm_password = "";
 $name_err = $password_err = $confirm_password_err = "";
@@ -147,61 +137,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="notification width<?= $errorMsgType ?>" style="margin: 0 auto .75rem auto;"><?= $errorMsg ?></div>
                 <?php } ?>
 
-                <form method="post" class="form width box">
 
-                    <div class="field">
-                        <label class="label">Name</label>
-                        <div class="control has-icons-left">
-                            <input name="name" class="input <?php echo (!empty($name_err)) ? 'is-danger' : ''; ?>" type="text" placeholder="John Doe" required <?php echo (!empty($name_err) || (empty($name_err) && empty($email_err) && empty($password_err) && empty($confirm_password_err))) ? 'autofocus' : ''; ?>>
-                            <span class="icon is-small is-left">
-                            <i class="fa fa-drivers-license"></i>
-                            </span>
-                            <?php echo (!empty($name_err)) ? '<p class="help is-danger">'.$name_err.'</p>' : ''; ?>
-                        </div>
-                    </div>
-
-                    <div class="field">
-                        <label class="label">Email</label>
-                        <div class="control has-icons-left">
-                            <input name="email" class="input <?php echo (!empty($email_err)) ? 'is-danger' : ''; ?>" type="email" placeholder="me@example.com" required validate <?php echo (!empty($email_err) || (empty($password_err) && empty($confirm_password_err))) ? 'autofocus' : ''; ?>>
-                            <span class="icon is-small is-left">
-                            <i class="fa fa-envelope"></i>
-                            </span>
-                            <?php echo (!empty($email_err)) ? '<p class="help is-danger">'.$email_err.'</p>' : ''; ?>
-                        </div>
-                    </div>
-
-                    <div class="field">
-                        <label class="label">Password</label>
-                        <div class="control has-icons-left">
-                            <input name="password" class="input <?php echo (!empty($password_err)) ? 'is-danger' : ''; ?>" type="password" placeholder="Password" required <?php echo ((!empty($password_err) && empty($name_err) && empty($email_err)) || !empty($confirm_password_err)) ? 'autofocus' : ''; ?>>
-                            <span class="icon is-small is-left">
-                            <i class="fa fa-key"></i>
-                            </span>
-                            <?php echo (!empty($password_err)) ? '<p class="help is-danger">'.$password_err.'</p>' : ''; ?>
-                        </div>
-                    </div>
-
-                    <div class="field">
-                        <label class="label">Confirm Password</label>
-                        <div class="control has-icons-left">
-                            <input name="confirm_password" class="input <?php echo (!empty($confirm_password_err)) ? 'is-danger' : ''; ?>" type="password" placeholder="Retype Password" required>
-                            <span class="icon is-small is-left">
-                            <i class="fa fa-key"></i>
-                            </span>
-                            <?php echo (!empty($confirm_password_err)) ? '<p class="help is-danger">'.$confirm_password_err.'</p>' : ''; ?>
-                        </div>
-                    </div>
-
-                    <div class="field is-grouped is-grouped-right">
-                        <p class="control">
-                            <button type="submit" class="button is-link">
-                            Submit
-                            </button>
-                        </p>
-                    </div>
-
-                </form>
 
             </div>
 
