@@ -34,6 +34,9 @@
                     <div class="navbar-end">
                         <div class="navbar-item">
                             <div class="buttons">
+                                <a href="<?= $rootUrl ?>" class="button is-primary">
+                                    <strong>Exit Admin Portal</strong>
+                                </a>
 <?php if($loggedIn) { ?>
                             </div>
                         </div>
@@ -43,7 +46,7 @@
                             </a>
                             <div class="navbar-dropdown is-boxed is-right">
                                 <a class="navbar-item" href="<?= $rootUrl ?>">
-                                    Website Home
+                                    Back Home
                                 </a>
                                 <a class="navbar-item" href="<?= $rootUrl ?>login/?action=logout">
                                     Sign out
