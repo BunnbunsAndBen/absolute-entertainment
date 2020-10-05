@@ -143,6 +143,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <div class="container main-container">
 
+                <nav class="breadcrumb" aria-label="breadcrumbs">
+                    <ul>
+                        <li><a href="../">Admin Portal</a></li>
+                        <li class="is-active"><a href="./" aria-current="page"><?= $pageTitle ?></a></li>
+                    </ul>
+                </nav>
+
                 <?php if(isset($errorMsg)) { ?>
                     <div class="notification width<?= $errorMsgType ?>" style="margin: 0 auto .75rem auto;"><?= $errorMsg ?></div>
                 <?php } ?>
