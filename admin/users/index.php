@@ -16,88 +16,23 @@ $pageTitle = 'Users';
 $errorMsg = null;
 $errorMsgType = 'is-danger';
 
-$returnUrl = $_REQUEST['return'];
+$results = null;
 
-$name = $email = $password = $confirm_password = "";
-$name_err = $password_err = $confirm_password_err = "";
+try {
+    $sql = "SELECT * 
+                    FROM users
+                    ORDER BY id DESC
+                    ";
 
-if($_SERVER["REQUEST_METHOD"] == "POST") {
+    $statement = $connection->prepare($sql);
+    $statement->execute();
+    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-    // Validate name
-    if(empty(trim($_POST["name"]))) {
-        $name_err = "Please enter a name.";
-    }else {
-        $name = trim($_POST["name"]);
-    }
-
-    // Validate email
-    if(empty(trim($_POST["email"]))) {
-        $email_err = "Please enter an email.";
-    }elseif(emailExists($connection, $_POST['email'])) {
-        $email = trim($_POST["email"]);
-        $email_err = "This email is already used.";
-    }else {
-        $email = $_POST['email'];
-    }
-
-    // Validate password
-    if(empty(trim($_POST['password']))) {
-        $password_err = "Please enter a password.";     
-    }elseif(strlen(trim($_POST['password'])) < 6) {
-        $password_err = "Password must be longer than 6 characters.";
-    }else {
-        $password = trim($_POST['password']);
-    }
-    
-    // Validate confirm password
-    if(empty(trim($_POST["confirm_password"]))) {
-        $confirm_password_err = 'Please confirm password.';     
-    }else {
-        $confirm_password = trim($_POST['confirm_password']);
-        if($password != $confirm_password) {
-            $confirm_password_err = 'Passwords did not match.';
-        }
-    }
-
-    // check for any errors
-    if(empty($name_err) && empty($email_err) && empty($password_err) && empty($confirm_password_err)) {
-
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $emailHash = emailHash($email);
-        $pfp = pfpFromEmailHash($emailHash);
-
-        $new = array(
-            "name"  => $name,
-            "email" => $email,
-            "emailHash" => $emailHash,
-            "password" => $hashedPassword,
-            "type" => 'normal',
-            "pfp" => $pfp
-        );
-        $sql = sprintf(
-                "INSERT INTO %s (%s) values (%s)",
-                "users",
-                implode(", ", array_keys($new)),
-                ":" . implode(", :", array_keys($new))
-        );
-
-        try {
-            $statement = $connection->prepare($sql);
-            $statement->execute($new);
-            } catch(PDOException $error) {
-                echo $sql . " " . $error->getMessage();
-            }
-            
-        if(!isset($error)) {
-            // user created
-            header('Location: ../');
-            exit;
-        }
-    }else {
-        //$errorMsg = 'Please fill out the form correctly.';
-    }
-
+} catch(PDOException $error) {
+    echo $sql . "<br />" . $error->getMessage();
 }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en" class="has-navbar-fixed-top">
@@ -137,7 +72,28 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="notification width<?= $errorMsgType ?>" style="margin: 0 auto .75rem auto;"><?= $errorMsg ?></div>
                 <?php } ?>
 
+                <?php //print_r($results); ?>
 
+                <table class="table is-fullwidth">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+<?php foreach($results as $result) { ?>
+                        <tr>
+                            <td><?= $result['id'] ?></td>
+                            <td><?= $result['name'] ?></td>
+                            <td><?= $result['email'] ?></td>
+                            <td><?= $result['date'] ?></td>
+                        </tr>
+<?php } ?>
+                    </tbody>
+                </table>
 
             </div>
 
