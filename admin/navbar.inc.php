@@ -16,16 +16,19 @@
                         <a href="<?= $rootUrl ?>admin/" class="navbar-item <?php echo ($pageTitle == 'Admin Portal') ? 'is-active' : ''; ?>">
                             Home
                         </a>
+                        <a href="<?= $rootUrl ?>admin/reviews/" class="navbar-item <?php echo ($pageTitle == 'Reviews') ? 'is-active' : ''; ?>">
+                            Reviews
+                        </a>
                         <div class="navbar-item has-dropdown is-hoverable">
                             <a class="navbar-link has-text-weight-semibold">
                                 Users
                             </a>
                             <div class="navbar-dropdown is-boxed">
                                 <a class="navbar-item <?php echo ($pageTitle == 'Users') ? 'is-active' : ''; ?>" href="<?= $rootUrl ?>admin/users/">
-                                    User accounts
+                                    User Accounts
                                 </a>
-                                <a class="navbar-item <?php echo ($pageTitle == 'Register User') ? 'is-active' : ''; ?>" href="<?= $rootUrl ?>admin/register/">
-                                    Register
+                                <a class="navbar-item <?php echo ($pageTitle == 'Create User') ? 'is-active' : ''; ?>" href="<?= $rootUrl ?>admin/users/register/">
+                                    Create User
                                 </a>
                             </div>
                         </div>

@@ -7,31 +7,16 @@ include_once($rootDir.'/db.inc.php');
 
 // logged in?
 if(!$loggedIn) {
-    header('Location: '.$rootUrl.'login/?return=admin/users/');
+    header('Location: '.$rootUrl.'login/?return=admin/reviews/');
     exit;
 }
 
-$pageTitle = 'Users';
+$pageTitle = 'Reviews';
 
 $errorMsg = null;
 $errorMsgType = 'is-danger';
 
-$results = null;
-
-try {
-    $sql = "SELECT * 
-                    FROM users
-                    ORDER BY id DESC
-                    ";
-
-    $statement = $connection->prepare($sql);
-    $statement->execute();
-    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-} catch(PDOException $error) {
-    echo $sql . "<br />" . $error->getMessage();
-}
-
+$results = getAllReviews($connection);
 
 ?>
 <!DOCTYPE html>
@@ -85,26 +70,24 @@ try {
                     <thead>
                         <tr>
                             <th>#</th>
+                            <th>Rating</th>
                             <th>Name</th>
-                            <th>Email</th>
                             <th>Date</th>
-                            <th>Type</th>
+                            <th>Content</th>
                         </tr>
                     </thead>
                     <tbody>
 <?php foreach($results as $result) { ?>
                         <tr>
                             <td><?= $result['id'] ?></td>
+                            <td><?= $result['rating'] ?></td>
                             <td><?= $result['name'] ?></td>
-                            <td><?= $result['email'] ?></td>
                             <td><?= $result['date'] ?></td>
-                            <td><?= $result['type'] ?></td>
+                            <td><?= $result['content'] ?></td>
                         </tr>
 <?php } ?>
                     </tbody>
                 </table>
-
-                <a href="./register/" class="button is-outlined is-link">Create User</a>
 
             </div>
 

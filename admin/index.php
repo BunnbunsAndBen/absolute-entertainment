@@ -6,7 +6,7 @@ $pageTitle = 'Admin Portal';
 
 // logged in?
 if(!$loggedIn) {
-    header('Location: '.$rootUrl.'login/?return=admin');
+    header('Location: '.$rootUrl.'login/?return=admin/');
     exit;
 }
 
@@ -45,8 +45,9 @@ if(!$loggedIn) {
 
             <div class="container main-container">
 
-                <a href="./users/" class="button is-outlined is-link">User accounts</a>
-                <a href="./register/" class="button is-outlined is-link">Create user</a>
+                <a href="./reviews/" class="button is-outlined is-link">Reviews</a>
+                <a href="./users/" class="button is-outlined is-link">User Accounts</a>
+                <a href="./users/register/" class="button is-outlined is-link">Create User</a>
 
             </div>
 

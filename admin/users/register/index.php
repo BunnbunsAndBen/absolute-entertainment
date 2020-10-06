@@ -7,11 +7,11 @@ include_once($rootDir.'/db.inc.php');
 
 // logged in?
 if(!$loggedIn) {
-    header('Location: '.$rootUrl.'login/?return=admin');
+    header('Location: '.$rootUrl.'login/?return=admin/reviews/');
     exit;
 }
 
-$pageTitle = 'Register User';
+$pageTitle = 'Create User';
 
 $errorMsg = null;
 $errorMsgType = 'is-danger';
@@ -145,7 +145,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <nav class="breadcrumb" aria-label="breadcrumbs">
                     <ul>
-                        <li><a href="../">Admin Portal</a></li>
+                        <li><a href="<?= $rootUrl ?>admin/">Admin Portal</a></li>
+                        <li><a href="<?= $rootUrl ?>admin/users/">Users</a></li>
                         <li class="is-active"><a href="./" aria-current="page"><?= $pageTitle ?></a></li>
                     </ul>
                 </nav>
