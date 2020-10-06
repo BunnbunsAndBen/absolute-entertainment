@@ -1,8 +1,11 @@
 <?php
 
 include_once($_SERVER['DOCUMENT_ROOT'].'/global.inc.php');
+include_once($rootDir.'/db.inc.php');
 
 $pageTitle = 'Reviews';
+
+$results = getAllReviews($connection);
 
 ?>
 <!DOCTYPE html>
@@ -39,7 +42,22 @@ $pageTitle = 'Reviews';
 
             <div class="container main-container">
 
-                <!-- <h1 class="title">Absolute Entertainment</h1> -->
+            <?php foreach($results as $row) { ?>
+
+                <div class="card has-background-grey-darker" style="margin-bottom: .5rem">
+                    <div class="card-content">
+                        <p class="title has-text-light">
+                        <?= $row['content'] ?>
+                        </p>
+                        <p class="subtitle flex" style="margin-top: .25rem">
+                        <span><?= $row['name'] ?></span>
+                        <span class="flex-grow"></span>
+                        <spam><?= formatDate($row['date']) ?></span>
+                        </p>
+                    </div>
+                </div>
+
+            <?php } ?>
 
             </div>
 

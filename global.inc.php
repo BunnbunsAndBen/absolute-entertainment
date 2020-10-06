@@ -61,3 +61,22 @@ function emailExists($connection, $email) {
     $stmt->execute([$email]); 
     return $stmt->fetchColumn();
 }
+
+function getAllReviews($connection) {
+    // read from db table
+    try {
+        $sql = "SELECT * 
+                        FROM reviews
+                        ORDER BY id DESC
+                        ";
+
+        $statement = $connection->prepare($sql);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    } catch(PDOException $error) {
+        echo $sql . "<br />" . $error->getMessage();
+    }
+    // return results
+    return $result;
+}
