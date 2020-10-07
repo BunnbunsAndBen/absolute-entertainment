@@ -89,6 +89,8 @@ $results = getAllReviews($connection);
                     </tbody>
                 </table>
 
+                <a href="./create/" class="button is-outlined is-link">Create Review</a>
+
             </div>
 
         </div>

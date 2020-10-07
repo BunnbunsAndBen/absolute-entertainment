@@ -16,9 +16,19 @@
                         <a href="<?= $rootUrl ?>admin/" class="navbar-item <?php echo ($pageTitle == 'Admin Portal') ? 'is-active' : ''; ?>">
                             Home
                         </a>
-                        <a href="<?= $rootUrl ?>admin/reviews/" class="navbar-item <?php echo ($pageTitle == 'Reviews') ? 'is-active' : ''; ?>">
-                            Reviews
-                        </a>
+                        <div class="navbar-item has-dropdown is-hoverable">
+                            <a class="navbar-link has-text-weight-semibold">
+                                Reviews
+                            </a>
+                            <div class="navbar-dropdown is-boxed">
+                                <a class="navbar-item <?php echo ($pageTitle == 'Reviews') ? 'is-active' : ''; ?>" href="<?= $rootUrl ?>admin/reviews/">
+                                    Reviews
+                                </a>
+                                <a class="navbar-item <?php echo ($pageTitle == 'Create Review') ? 'is-active' : ''; ?>" href="<?= $rootUrl ?>admin/reviews/create/">
+                                    Create Review
+                                </a>
+                            </div>
+                        </div>
                         <div class="navbar-item has-dropdown is-hoverable">
                             <a class="navbar-link has-text-weight-semibold">
                                 Users
