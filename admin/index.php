@@ -47,6 +47,7 @@ if(!$loggedIn) {
 
                 <div style="margin-bottom: 4px">
                     <a href="./reviews/" class="button is-outlined is-link">Reviews</a>
+                    <a href="./reviews/create/" class="button is-outlined is-link">Create Review</a>
                 </div>
                 <div>
                     <a href="./users/" class="button is-outlined is-link">User Accounts</a>
