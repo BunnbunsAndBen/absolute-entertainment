@@ -73,6 +73,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($password, $data['password'])) {
             //good, create session
             $_SESSION['auth'] = true;
+            $_SESSION['id'] = $data['id'];
             $_SESSION['name'] = $data['name'];
             $_SESSION['email'] = $data['email'];
             $_SESSION['pfp'] = $data['pfp'];
