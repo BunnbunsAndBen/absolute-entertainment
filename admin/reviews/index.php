@@ -71,9 +71,9 @@ $results = getAllReviews($connection);
                         <tr>
                             <th>#</th>
                             <th>Rating</th>
+                            <th>Content</th>
                             <th>Name</th>
                             <th>Date</th>
-                            <th>Content</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -81,9 +81,10 @@ $results = getAllReviews($connection);
                         <tr>
                             <td><?= $result['id'] ?></td>
                             <td><?= $result['rating'] ?></td>
+                            <td><?= $result['content'] ?></td>
                             <td><?= $result['name'] ?></td>
                             <td><?= $result['date'] ?></td>
-                            <td><?= $result['content'] ?></td>
+                            
                         </tr>
 <?php } ?>
                     </tbody>
