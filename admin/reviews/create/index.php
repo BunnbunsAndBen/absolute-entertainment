@@ -27,18 +27,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     }else {
         $name = trim($_POST["name"]);
     }
+    
+    // Validate rating
+    if(empty(trim($_POST["rating"]))) {
+        $rating_err = "Please add a rating.";
+    }else {
+        $rating = trim($_POST["rating"]);
+    }
+
+    // Validate content
+    $content = trim($_POST["content"]);
 
     // check for any errors
-    if(empty($name_err) && empty($email_err) && empty($password_err) && empty($confirm_password_err)) {
-
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $emailHash = emailHash($email);
+    if(empty($name_err) && empty($content_err) && empty($rating_err)) {
 
         $new = array(
             "name"  => $name,
             "rating" => $rating,
             "content" => $content,
-            "username" => $_SESSION['username']
+            "added_by" => $_SESSION['id']
         );
         $sql = sprintf(
                 "INSERT INTO %s (%s) values (%s)",
@@ -116,18 +123,29 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="field">
                         <label class="label">Name</label>
                         <div class="control has-icons-left">
-                            <input name="name" class="input <?php echo (!empty($name_err)) ? 'is-danger' : ''; ?>" type="text" placeholder="John Doe" required <?php echo (!empty($name_err) || (empty($name_err) && empty($email_err) && empty($password_err) && empty($confirm_password_err))) ? 'autofocus' : ''; ?>>
+                            <input name="name" class="input <?php echo (!empty($name_err)) ? 'is-danger' : ''; ?>" value="<?= $_POST['name'] ?>" required autofocus>
                             <span class="icon is-small is-left">
                             <i class="fa fa-drivers-license"></i>
                             </span>
                             <?php echo (!empty($name_err)) ? '<p class="help is-danger">'.$name_err.'</p>' : ''; ?>
                         </div>
                     </div>
+                    
+                    <div class="field">
+                        <label class="label">Rating</label>
+                        <div class="control has-icons-left">
+                            <input name="rating" type="number" min="1" max="5" class="input <?php echo (!empty($rating_err)) ? 'is-danger' : ''; ?>" value="<?= $_POST['rating'] ?>" required>
+                            <span class="icon is-small is-left">
+                            <i class="fa fa-star"></i>
+                            </span>
+                            <?php echo (!empty($rating_err)) ? '<p class="help is-danger">'.$rating_err.'</p>' : ''; ?>
+                        </div>
+                    </div>
 
                     <div class="field">
                         <label class="label">Comment</label>
                         <div class="control">
-                            <textarea class="textarea" placeholder="Content of review"></textarea>
+                            <textarea name="content" class="textarea <?php echo (!empty($content_err)) ? 'is-danger' : ''; ?>" placeholder="Content of review"><?= escape($_POST['content']) ?></textarea>
                         </div>
                     </div>
 
