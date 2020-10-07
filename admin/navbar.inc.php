@@ -17,7 +17,7 @@
                             Home
                         </a>
                         <div class="navbar-item has-dropdown is-hoverable">
-                            <a class="navbar-link has-text-weight-semibold">
+                            <a class="navbar-link">
                                 Reviews
                             </a>
                             <div class="navbar-dropdown is-boxed">
@@ -30,7 +30,7 @@
                             </div>
                         </div>
                         <div class="navbar-item has-dropdown is-hoverable">
-                            <a class="navbar-link has-text-weight-semibold">
+                            <a class="navbar-link">
                                 Users
                             </a>
                             <div class="navbar-dropdown is-boxed">
