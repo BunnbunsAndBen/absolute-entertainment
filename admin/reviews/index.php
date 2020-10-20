@@ -34,6 +34,21 @@ $results = getAllReviews($connection);
         <link rel="dns-prefetch" href="https://fonts.googleapis.com">
         <link href="https://fonts.googleapis.com/css2?family=Material+Icons&family=Roboto&family=Signika:wght@700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.1.7/css/fork-awesome.min.css"/>
+        <style>
+        .trash {
+            color: transparent;
+            font-size: 1.25rem;
+            cursor: pointer;
+        }
+        
+        .r-row:hover .trash {
+            color: rgb(255, 81, 81, .88);
+        }
+
+        .r-row:hover .trash:hover {
+            color: rgb(255, 81, 81, .92);
+        }
+        </style>
     </head>
     <body>
         
@@ -74,16 +89,18 @@ $results = getAllReviews($connection);
                             <th>Content</th>
                             <th>Name</th>
                             <th>Date</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
 <?php foreach($results as $result) { ?>
-                        <tr>
+                        <tr class="r-row">
                             <td><?= $result['id'] ?></td>
                             <td><?= $result['rating'] ?></td>
                             <td><?= $result['content'] ?></td>
                             <td><?= $result['name'] ?></td>
                             <td><?= $result['date'] ?></td>
+                            <td><span class="material-icons vam trash" onclick="deleteReview(<?= $result['id'] ?>);"> delete_forever </span></td>
                             
                         </tr>
 <?php } ?>
@@ -97,5 +114,14 @@ $results = getAllReviews($connection);
         </div>
 
         <?php include($rootDir.'/footer.inc.php'); ?>
+        <script>
+function deleteReview(id) {
+    if (confirm("Delete review #"+ id +"?")) {
+        console.log('Delete review '+ id);
+    } else {
+        
+    }
+}
+        </script>
     </body>
 </html>
