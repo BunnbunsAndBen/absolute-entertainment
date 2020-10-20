@@ -34,21 +34,6 @@ $results = getAllReviews($connection);
         <link rel="dns-prefetch" href="https://fonts.googleapis.com">
         <link href="https://fonts.googleapis.com/css2?family=Material+Icons&family=Roboto&family=Signika:wght@700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.1.7/css/fork-awesome.min.css"/>
-        <style>
-        .trash {
-            color: transparent;
-            font-size: 1.25rem;
-            cursor: pointer;
-        }
-        
-        .r-row:hover .trash {
-            color: rgb(255, 81, 81, .88);
-        }
-
-        .r-row:hover .trash:hover {
-            color: rgb(255, 81, 81, .92);
-        }
-        </style>
     </head>
     <body>
         
@@ -100,7 +85,7 @@ $results = getAllReviews($connection);
                             <td><?= $result['content'] ?></td>
                             <td><?= $result['name'] ?></td>
                             <td><?= $result['date'] ?></td>
-                            <td><span class="material-icons vam trash" onclick="deleteReview(<?= $result['id'] ?>);"> delete_forever </span></td>
+                            <td><span class="material-icons vam trash" onclick="deleteReview(<?= $result['id'] ?>);" title="Delete review"> delete_forever </span></td>
                             
                         </tr>
 <?php } ?>

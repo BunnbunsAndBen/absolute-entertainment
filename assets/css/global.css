@@ -51,6 +51,20 @@ nav.navbar {
     margin-top: 2rem;
 }
 
+.trash {
+    color: transparent;
+    font-size: 1.25rem!important;
+    cursor: pointer;
+}
+
+.r-row:hover .trash {
+    color: rgb(255, 81, 81, .88);
+}
+
+.r-row:hover .trash:hover {
+    color: rgb(255, 81, 81, .92);
+}
+
 footer.footer {
     padding: 2.25rem 1rem 2.25rem;
 }
