@@ -63,6 +63,26 @@ function emailExists($connection, $email) {
     return $stmt->fetchColumn();
 }
 
+function getUserById($connection, $id) {
+    // read from db table
+    try {
+        $sql = "SELECT * 
+                        FROM users
+                        WHERE id = :id
+                        ";
+
+        $statement = $connection->prepare($sql);
+        $statement->bindParam(':id', $id, PDO::FETCH_ASSOC);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    } catch(PDOException $error) {
+        echo $sql . "<br />" . $error->getMessage();
+    }
+    // return results
+    return $result[0];
+}
+
 function getAllReviews($connection) {
     // read from db table
     try {
