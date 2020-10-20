@@ -89,16 +89,19 @@ try {
                             <th>Email</th>
                             <th>Date</th>
                             <th>Type</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
 <?php foreach($results as $result) { ?>
-                        <tr>
+                        <tr class="r-row">
                             <td><?= $result['id'] ?></td>
                             <td><?= $result['name'] ?></td>
                             <td><?= $result['email'] ?></td>
                             <td><?= $result['date'] ?></td>
                             <td><?= $result['type'] ?></td>
+                            <td><span class="material-icons vam trash" onclick="deleteUser(<?= $result['id'] ?>);" title="Delete user"> delete_forever </span></td>
+
                         </tr>
 <?php } ?>
                     </tbody>
@@ -111,5 +114,25 @@ try {
         </div>
 
         <?php include($rootDir.'/footer.inc.php'); ?>
+    <script>
+function deleteUser(id) {
+    if (confirm("Delete user #"+ id +"?")) {
+        console.log('Delete user '+ id);
+        var xhttp = new XMLHttpRequest();
+        xhttp.onload = function() {
+            var data = JSON.parse(xhttp.responseText);
+            if(data.error == 'ok') {
+                location.reload();
+            }else {
+                alert('Error: '+ data.error);
+            }
+        };
+        xhttp.open('GET', '<?= $rootApiUrl ?>delete.user.php?id='+id, true);
+        xhttp.send();
+    } else {
+        
+    }
+}
+    </script>
     </body>
 </html>
