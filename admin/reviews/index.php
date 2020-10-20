@@ -118,6 +118,17 @@ $results = getAllReviews($connection);
 function deleteReview(id) {
     if (confirm("Delete review #"+ id +"?")) {
         console.log('Delete review '+ id);
+        var xhttp = new XMLHttpRequest();
+        xhttp.onload = function() {
+            var data = JSON.parse(xhttp.responseText);
+            if(data.error == 'ok') {
+                location.reload();
+            }else {
+                alert('Error: '+ data.error);
+            }
+        };
+        xhttp.open('GET', '<?= $rootUrl ?>api/delete.review.php?id='+id, true);
+        xhttp.send();
     } else {
         
     }
