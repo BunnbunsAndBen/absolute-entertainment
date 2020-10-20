@@ -5,6 +5,7 @@ session_start();
 $rootDir = $_SERVER['DOCUMENT_ROOT'];
 $rootUrl = '/';
 $rootAssetsUrl = $rootUrl.'assets/';
+$rootApiUrl = $rootUrl.'api/';
 
 // site vars
 $siteTitle = "Absolute Entertainment";

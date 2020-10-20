@@ -127,7 +127,7 @@ function deleteReview(id) {
                 alert('Error: '+ data.error);
             }
         };
-        xhttp.open('GET', '<?= $rootUrl ?>api/delete.review.php?id='+id, true);
+        xhttp.open('GET', '<?= $rootApiUrl ?>delete.review.php?id='+id, true);
         xhttp.send();
     } else {
         
