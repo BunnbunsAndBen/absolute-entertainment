@@ -3,22 +3,30 @@
 include('../global.inc.php');
 include('../db.inc.php');
 
+// logged in?
+if(!$loggedIn) {
+    header('Location: '.$rootUrl.'login/?return=admin/reviews/');
+    exit;
+}
+
 //read from db table //
 try {
-    $connection = new PDO($sql_dsn, $sql_username, $sql_password, $sql_options);
-    $sql = "SELECT * 
+    $sql = "DELETE 
                 FROM reviews
+                WHERE id = :id
                 ";
 
     $statement = $connection->prepare($sql);
+    $statement->bindParam(':id', $_GET['id'], PDO::FETCH_ASSOC);
     $statement->execute();
-    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-
 } catch(PDOException $error) {
     echo $sql . "<br />" . $error->getMessage();
 }
+if(!isset($error)) {
+    $result = array("error" => "ok");
+}
 // page //
 header('Content-Type: application/json');
- 
+
 echo json_encode($result, JSON_PRETTY_PRINT);
 ?>
