@@ -100,7 +100,11 @@ try {
                             <td><?= $result['email'] ?></td>
                             <td><?= $result['date'] ?></td>
                             <td><?= $result['type'] ?></td>
-                            <td><span class="material-icons vam trash" onclick="deleteUser(<?= $result['id'] ?>);" title="Delete user"> delete_forever </span></td>
+                            <td>
+                                <span class="material-icons vam edit" onclick="editUser(<?= $result['id'] ?>);" title="Edit user"> edit </span>
+                                &nbsp;
+                                <span class="material-icons vam trash" onclick="deleteUser(<?= $result['id'] ?>);" title="Delete user"> delete_forever </span>
+                            </td>
 
                         </tr>
 <?php } ?>

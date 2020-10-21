@@ -51,7 +51,7 @@ nav.navbar {
     margin-top: 2rem;
 }
 
-.trash {
+.trash, .edit {
     color: transparent;
     font-size: 1.25rem!important;
     cursor: pointer;
@@ -63,6 +63,14 @@ nav.navbar {
 
 .r-row:hover .trash:hover {
     color: rgb(255, 81, 81, .92);
+}
+
+.r-row:hover .edit {
+    color: rgba(240, 240, 240, 0.88);
+}
+
+.r-row:hover .edit:hover {
+    color: rgba(240, 240, 240, 0.92);
 }
 
 footer.footer {
