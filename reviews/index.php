@@ -23,6 +23,14 @@ $results = getAllReviews($connection);
         <link rel="dns-prefetch" href="https://fonts.googleapis.com">
         <link href="https://fonts.googleapis.com/css2?family=Material+Icons&family=Roboto&family=Signika:wght@700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.1.7/css/fork-awesome.min.css"/>
+        <style>
+            .stars {
+                margin-bottom: .5rem;
+            }
+            .unfilledStar {
+                color: rgba(245, 245, 245, .55);
+            }
+        </style>
     </head>
     <body>
         
@@ -46,13 +54,27 @@ $results = getAllReviews($connection);
 
                 <div class="card has-background-grey-darker" style="margin-bottom: .5rem">
                     <div class="card-content">
+                        <div class="stars has-text-light">
+                            <?php
+                            $i = 0;
+                            $stars = ceil($row['rating']);
+                            $starsOutOf5 = 5 - $stars;
+                            while ($i++ < $stars) {
+                                echo '<span class="material-icons has-text-warning"> star </span>';
+                            }
+                            $i = 0;
+                            while ($i++ < $starsOutOf5) {
+                                echo '<span class="material-icons unfilledStar"> star </span>';
+                            }
+                            ?>
+                        </div>
                         <p class="title has-text-light">
                         <?= $row['content'] ?>
                         </p>
                         <p class="subtitle flex" style="margin-top: .25rem">
                         <span><?= $row['name'] ?></span>
                         <span class="flex-grow"></span>
-                        <spam><?= formatDate($row['date']) ?></span>
+                        <span><?= formatDate($row['date']) ?></span>
                         </p>
                     </div>
                 </div>
