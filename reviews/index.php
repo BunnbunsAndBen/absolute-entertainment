@@ -72,7 +72,7 @@ $results = getAllReviews($connection);
                         <?= $row['content'] ?>
                         </p>
                         <p class="subtitle flex" style="margin-top: .25rem">
-                        <span><?= $row['name'] ?></span>
+                        <span>-&nbsp;<?= $row['name'] ?></span>
                         <span class="flex-grow"></span>
                         <span><?= formatDate($row['date']) ?></span>
                         </p>
