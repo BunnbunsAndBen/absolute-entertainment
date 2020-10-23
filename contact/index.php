@@ -1,8 +1,59 @@
 <?php
 
+error_reporting(E_ALL & ~E_NOTICE);
+
 include_once($_SERVER['DOCUMENT_ROOT'].'/global.inc.php');
+include_once($rootDir.'/db.inc.php');
 
 $pageTitle = 'Contact Us';
+
+$errorMsg = null;
+$errorMsgType = 'is-danger';
+
+$name = $email = $phone = $event_date = $location = $payment_type = $message = "";
+$name_err = $email_err = $phone_err = $event_date_err = $location_err = $payment_type = $message_err = "";
+
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    // Input validateion
+
+    if(empty(trim($_POST["name"]))) {
+        $name_err = "Please enter a name.";
+    }else {
+        $name = trim($_POST["name"]);
+    }
+
+    if(empty(trim($_POST["email"]))) {
+        $email_err = "Please enter an email.";
+    }else {
+        $email = trim($_POST["email"]);
+    }
+
+    if(empty(trim($_POST["phone"]))) {
+        $phone_err = "Please enter a phone number.";
+    }else {
+        $phone = trim($_POST["phone"]);
+    }
+
+    if(empty(trim($_POST["event_date"]))) {
+        $event_date_err = "Please enter a date for the event.";
+    }else {
+        $event_date = trim($_POST["event_date"]);
+    }
+
+    if(empty(trim($_POST["location"]))) {
+        $location_err = "Please enter a location for the event.";
+    }else {
+        $location = trim($_POST["location"]);
+    }
+
+    if(empty(trim($_POST["payment_type"]))) {
+        $payment_type_err = "Please select a payment option.";
+    }else {
+        $payment_type = trim($_POST["payment_type"]);
+    }
+
+}
 
 ?>
 <!DOCTYPE html>
@@ -39,76 +90,87 @@ $pageTitle = 'Contact Us';
 
             <div class="container main-container">
 
-                <form class="form width box">
+                <?php if(isset($errorMsg)) { ?>
+                    <div class="notification width <?= $errorMsgType ?>" style="margin: 0 auto .75rem auto;"><?= $errorMsg ?></div>
+                <?php } ?>
+
+                <form action="." method="post" class="form width box">
 
                     <div class="field">
                         <label class="label">Name</label>
                         <div class="control has-icons-left">
-                            <input class="input" type="text" placeholder="John Doe" required autofocus>
+                            <input name="name" class="input <?php echo (!empty($name_err)) ? 'is-danger' : ''; ?>" type="text" value="<?= $name ?>" placeholder="John Doe" required autofocus>
                             <span class="icon is-small is-left">
                             <i class="fa fa-drivers-license"></i>
                             </span>
+                            <?php echo (!empty($name_err)) ? '<p class="help is-danger">'.$name_err.'</p>' : ''; ?>
                         </div>
                     </div>
 
                     <div class="field">
                         <label class="label">Email</label>
                         <div class="control has-icons-left">
-                            <input class="input" type="email" placeholder="me@example.com" required validate>
+                            <input name="email" class="input <?php echo (!empty($email_err)) ? 'is-danger' : ''; ?>" type="email" placeholder="me@example.com" value="<?= $email ?>" validate required>
                             <span class="icon is-small is-left">
                             <i class="fa fa-envelope"></i>
                             </span>
+                            <?php echo (!empty($email_err)) ? '<p class="help is-danger">'.$email_err.'</p>' : ''; ?>
                         </div>
                     </div>
 
                     <div class="field">
                         <label class="label">Phone number</label>
                         <div class="control has-icons-left">
-                            <input class="input" type="tel" placeholder="(555) 1230-6942" validate>
+                            <input name="phone" class="input <?php echo (!empty($phone_err)) ? 'is-danger' : ''; ?>" type="tel" placeholder="(555) 1230-6942" value="<?= $phone ?>" validate required>
                             <span class="icon is-small is-left">
                             <i class="fa fa-phone"></i>
                             </span>
+                            <?php echo (!empty($phone_err)) ? '<p class="help is-danger">'.$phone_err.'</p>' : ''; ?>
                         </div>
                     </div>
 
                     <div class="field">
                         <label class="label">Date of event</label>
                         <div class="control has-icons-left">
-                            <input class="input" type="date" placeholder="" validate required>
+                            <input name="event_date" class="input <?php echo (!empty($event_date_err)) ? 'is-danger' : ''; ?>" type="date" placeholder="" value="<?= $event_date ?>" validate required>
                             <span class="icon is-small is-left">
                             <i class="fa fa-calendar"></i>
                             </span>
+                            <?php echo (!empty($event_date_err)) ? '<p class="help is-danger">'.$event_date_err.'</p>' : ''; ?>
                         </div>
                     </div>
 
                     <div class="field">
                         <label class="label">Location of event</label>
                         <div class="control has-icons-left">
-                            <input class="input" type="text" placeholder="123 Street Town, State 12345 USA" required>
+                            <input name="location" class="input <?php echo (!empty($location_err)) ? 'is-danger' : ''; ?>" type="text" placeholder="123 Street Town, State 12345 USA" value="<?= $location ?>" required>
                             <span class="icon is-small is-left">
                             <i class="fa fa-building"></i>
                             </span>
+                            <?php echo (!empty($location_err)) ? '<p class="help is-danger">'.$location_err.'</p>' : ''; ?>
                         </div>
                     </div>
 
                     <div class="field">
                         <label class="label">Payment options</label>
                         <div class="control">
-                            <div class="select">
-                            <select required>
-                                <option>Select payment option</option>
-                                <option>Cash</option>
-                                <option>Check</option>
-                                <option>Credit Card</option>
+                            <div class="select <?php echo (!empty($payment_type_err)) ? 'is-danger' : ''; ?>">
+                            <select name="payment_type" value="<?= $payment_type ?>" required>
+                                <option value="none" selected disabled hidden>Select payment option</option>
+                                <option value="Cash">Cash</option>
+                                <option value="Check">Check</option>
+                                <option value="Credit Card">Credit Card</option>
                             </select>
                             </div>
+                            <?php echo (!empty($payment_type_err)) ? '<p class="help is-danger">'.$payment_type_err.'</p>' : ''; ?>
                         </div>
                     </div>
 
                     <div class="field">
                         <label class="label">Extra info</label>
                         <div class="control">
-                            <textarea class="textarea" placeholder="Message"></textarea>
+                            <textarea name="message <?php echo (!empty($message_err)) ? 'is-danger' : ''; ?>" class="textarea" placeholder="Message" value="<?= $message ?>"></textarea>
+                            <?php echo (!empty($message_err)) ? '<p class="help is-danger">'.$message_err.'</p>' : ''; ?>
                         </div>
                     </div>
 
