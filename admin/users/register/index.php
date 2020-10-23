@@ -160,7 +160,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="field">
                         <label class="label">Name</label>
                         <div class="control has-icons-left">
-                            <input name="name" class="input <?php echo (!empty($name_err)) ? 'is-danger' : ''; ?>" type="text" placeholder="John Doe" required <?php echo (!empty($name_err) || (empty($name_err) && empty($email_err) && empty($password_err) && empty($confirm_password_err))) ? 'autofocus' : ''; ?>>
+                            <input name="name" class="input <?php echo (!empty($name_err)) ? 'is-danger' : ''; ?>" type="text" placeholder="John Doe" value="<?= $name ?>" required <?php echo (!empty($name_err) || (empty($name_err) && empty($email_err) && empty($password_err) && empty($confirm_password_err))) ? 'autofocus' : ''; ?>>
                             <span class="icon is-small is-left">
                             <i class="fa fa-drivers-license"></i>
                             </span>
@@ -171,7 +171,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="field">
                         <label class="label">Email</label>
                         <div class="control has-icons-left">
-                            <input name="email" class="input <?php echo (!empty($email_err)) ? 'is-danger' : ''; ?>" type="email" placeholder="me@example.com" required validate <?php echo (!empty($email_err) || (empty($password_err) && empty($confirm_password_err))) ? 'autofocus' : ''; ?>>
+                            <input name="email" class="input <?php echo (!empty($email_err)) ? 'is-danger' : ''; ?>" type="email" placeholder="me@example.com" value="<?= $email ?>" required validate <?php echo (!empty($email_err) || (empty($password_err) && empty($confirm_password_err))) ? 'autofocus' : ''; ?>>
                             <span class="icon is-small is-left">
                             <i class="fa fa-envelope"></i>
                             </span>
