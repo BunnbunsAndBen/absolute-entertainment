@@ -10,6 +10,12 @@ $rootApiUrl = $rootUrl.'api/';
 // site vars
 $siteTitle = "Absolute Entertainment";
 $siteDesc = "We do entertainment. Check us out today!";
+$siteEmail = "sales@absoluteentertainment.com";
+
+// site SMTP server
+$siteSMTP_url = 'smtp.gmail.com';
+$siteSMTP_user = "us.absolute.entertainment@gmail.com";
+$siteSMTP_pwd = 'imvtklxltwxxkuaz';
 
 // logged in?
 if(isset($_SESSION['auth'])) {
