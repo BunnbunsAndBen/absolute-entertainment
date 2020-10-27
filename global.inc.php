@@ -1,5 +1,6 @@
 <?php
 session_start();
+$errorMsg = '';
 
 // setup
 $rootDir = $_SERVER['DOCUMENT_ROOT'];
@@ -89,7 +90,7 @@ function getUserById($connection, $id) {
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 
     } catch(PDOException $error) {
-        echo $sql . "<br />" . $error->getMessage();
+        $errorMsg = $sql . "<br />" . $error->getMessage();
     }
     // return results
     return $result[0];
@@ -108,7 +109,7 @@ function getAllReviews($connection) {
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 
     } catch(PDOException $error) {
-        echo $sql . "<br />" . $error->getMessage();
+        $errorMsg = $sql . "<br />" . $error->getMessage();
     }
     // return results
     return $result;

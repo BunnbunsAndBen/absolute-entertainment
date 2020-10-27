@@ -127,10 +127,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="container main-container">
 
                 <?php if(isset($errorMsg)) { ?>
-                    <div class="notification width <?= $errorMsgType ?>" style="margin: 0 auto .75rem auto;"><?= $errorMsg ?></div>
+                    <div class="notification width sm <?= $errorMsgType ?>" style="margin: 0 auto .75rem auto;"><?= $errorMsg ?></div>
                 <?php } ?>
 
-                <form method="post" class="form width box">
+                <form method="post" class="form width sm box">
 
                     <div class="field">
                         <label class="label">Email</label>

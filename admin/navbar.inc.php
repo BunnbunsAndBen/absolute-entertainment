@@ -17,26 +17,20 @@
                             Home
                         </a>
                         <div class="navbar-item has-dropdown is-hoverable">
-                            <a class="navbar-link">
+                            <a class="navbar-link <?php echo ($pageTitle == 'Reviews') ? 'is-active' : ''; ?>" href="<?= $rootUrl ?>admin/reviews/">
                                 Reviews
                             </a>
                             <div class="navbar-dropdown is-boxed">
-                                <a class="navbar-item <?php echo ($pageTitle == 'Reviews') ? 'is-active' : ''; ?>" href="<?= $rootUrl ?>admin/reviews/">
-                                    Reviews
-                                </a>
                                 <a class="navbar-item <?php echo ($pageTitle == 'Create Review') ? 'is-active' : ''; ?>" href="<?= $rootUrl ?>admin/reviews/create/">
                                     Create Review
                                 </a>
                             </div>
                         </div>
                         <div class="navbar-item has-dropdown is-hoverable">
-                            <a class="navbar-link">
+                            <a class="navbar-link <?php echo ($pageTitle == 'Users') ? 'is-active' : ''; ?>" href="<?= $rootUrl ?>admin/users/">
                                 Users
                             </a>
                             <div class="navbar-dropdown is-boxed">
-                                <a class="navbar-item <?php echo ($pageTitle == 'Users') ? 'is-active' : ''; ?>" href="<?= $rootUrl ?>admin/users/">
-                                    User Accounts
-                                </a>
                                 <a class="navbar-item <?php echo ($pageTitle == 'Create User') ? 'is-active' : ''; ?>" href="<?= $rootUrl ?>admin/users/register/">
                                     Create User
                                 </a>

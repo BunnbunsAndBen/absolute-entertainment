@@ -14,7 +14,7 @@
 }
 
 .pageHeight {
-    min-height: calc(100vh - 12.5rem);
+    min-height: calc(100vh - 12.25rem);
 }
 
 nav.navbar {
@@ -43,8 +43,12 @@ nav.navbar {
 } */
 
 .width {
-    max-width: 720px;
+    max-width: 800px;
     margin: 0 auto;
+}
+
+.width.sm {
+    max-width: 720px;
 }
 
 .main-container {
