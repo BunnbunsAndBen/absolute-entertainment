@@ -18,6 +18,11 @@ $errorMsgType = 'is-danger';
 
 $results = getAllReviews($connection);
 
+if(!isset($results[0])) {
+    $errorMsgType = 'is-info';
+    $errorMsg = 'No reviews yet';
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en" class="has-navbar-fixed-top">
@@ -61,7 +66,7 @@ $results = getAllReviews($connection);
                 </nav>
 
                 <?php if(isset($errorMsg)) { ?>
-                    <div class="notification width <?= $errorMsgType ?>" style="margin: 0 auto .75rem auto;"><?= $errorMsg ?></div>
+                    <div class="notification <?= $errorMsgType ?>" style="margin: 0 auto .75rem auto;"><?= $errorMsg ?></div>
                 <?php } ?>
 
                 <?php //print_r($results); ?>
@@ -78,7 +83,7 @@ $results = getAllReviews($connection);
                         </tr>
                     </thead>
                     <tbody>
-<?php foreach($results as $result) { ?>
+<?php if(isset($results[0])) { foreach($results as $result) { ?>
                         <tr class="r-row">
                             <td><?= $result['id'] ?></td>
                             <td><?= $result['rating'] ?></td>
@@ -88,7 +93,7 @@ $results = getAllReviews($connection);
                             <td><a class="material-icons vam trash" onclick="deleteReview(<?= $result['id'] ?>);" title="Delete review"> delete_forever </a></td>
                             
                         </tr>
-<?php } ?>
+<?php } } ?>
                     </tbody>
                 </table>
 

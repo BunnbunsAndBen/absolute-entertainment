@@ -1,11 +1,21 @@
 <?php
 
+error_reporting(E_ALL & ~E_NOTICE);
+
 include_once($_SERVER['DOCUMENT_ROOT'].'/global.inc.php');
 include_once($rootDir.'/db.inc.php');
 
 $pageTitle = 'Reviews';
 
+$errorMsg = null;
+$errorMsgType = 'is-danger';
+
 $results = getAllReviews($connection);
+
+if(!isset($results[0])) {
+    $errorMsgType = 'is-info';
+    $errorMsg = 'No reviews yet';
+}
 
 ?>
 <!DOCTYPE html>
@@ -50,7 +60,11 @@ $results = getAllReviews($connection);
 
             <div class="container main-container">
 
-            <?php foreach($results as $row) { ?>
+            <?php if(isset($errorMsg)) { ?>
+                <div class="notification <?= $errorMsgType ?>" style="margin: 0 auto .75rem auto;"><?= $errorMsg ?></div>
+            <?php } ?>
+
+            <?php if(isset($results[0])) { foreach($results as $row) { ?>
 
                 <div class="card has-background-grey-darker" style="margin-bottom: .5rem">
                     <div class="card-content">
@@ -79,7 +93,7 @@ $results = getAllReviews($connection);
                     </div>
                 </div>
 
-            <?php } ?>
+            <?php } } ?>
 
             </div>
 
