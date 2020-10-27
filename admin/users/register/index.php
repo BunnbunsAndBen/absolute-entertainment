@@ -79,7 +79,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $new = array(
             "name"  => $name,
             "email" => $email,
-            "emailHash" => $emailHash,
+            "email_hash" => $emailHash,
             "password" => $hashedPassword,
             "type" => 'normal',
             "pfp" => $pfp
@@ -95,7 +95,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $statement = $connection->prepare($sql);
             $statement->execute($new);
             } catch(PDOException $error) {
-                echo $sql . " " . $error->getMessage();
+                $errorMsg = $sql . " " . $error->getMessage();
             }
             
         if(!isset($error)) {
@@ -152,7 +152,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 </nav>
 
                 <?php if(isset($errorMsg)) { ?>
-                    <div class="notification width<?= $errorMsgType ?>" style="margin: 0 auto .75rem auto;"><?= $errorMsg ?></div>
+                    <div class="notification width <?= $errorMsgType ?>" style="margin: 0 auto .75rem auto;"><?= $errorMsg ?></div>
                 <?php } ?>
 
                 <form method="post" class="form width box">
