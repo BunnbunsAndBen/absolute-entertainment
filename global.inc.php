@@ -57,10 +57,21 @@ function pfpFromEmail($email, $default = 'mp') {
 
 // -- db functions -- //
 
-// function to check if email exists
+function userIdExists($connection, $userId) {
+    $stmt = $connection->prepare("SELECT 1 FROM users WHERE id=?");
+    $stmt->execute([$userId]); 
+    return $stmt->fetchColumn();
+}
+
 function emailExists($connection, $email) {
     $stmt = $connection->prepare("SELECT 1 FROM users WHERE email=?");
     $stmt->execute([$email]); 
+    return $stmt->fetchColumn();
+}
+
+function emailHashExists($connection, $emailHash) {
+    $stmt = $connection->prepare("SELECT 1 FROM users WHERE email_hash=?");
+    $stmt->execute([$emailHash]); 
     return $stmt->fetchColumn();
 }
 
