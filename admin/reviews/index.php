@@ -61,7 +61,7 @@ $results = getAllReviews($connection);
                 </nav>
 
                 <?php if(isset($errorMsg)) { ?>
-                    <div class="notification width<?= $errorMsgType ?>" style="margin: 0 auto .75rem auto;"><?= $errorMsg ?></div>
+                    <div class="notification width <?= $errorMsgType ?>" style="margin: 0 auto .75rem auto;"><?= $errorMsg ?></div>
                 <?php } ?>
 
                 <?php //print_r($results); ?>
@@ -85,7 +85,7 @@ $results = getAllReviews($connection);
                             <td><?= $result['content'] ?></td>
                             <td><?= $result['name'] ?></td>
                             <td><?= $result['date'] ?></td>
-                            <td><span class="material-icons vam trash" onclick="deleteReview(<?= $result['id'] ?>);" title="Delete review"> delete_forever </span></td>
+                            <td><a class="material-icons vam trash" onclick="deleteReview(<?= $result['id'] ?>);" title="Delete review"> delete_forever </a></td>
                             
                         </tr>
 <?php } ?>

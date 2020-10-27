@@ -29,7 +29,7 @@ try {
     $results = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 } catch(PDOException $error) {
-    echo $sql . "<br />" . $error->getMessage();
+    $errorMsg = $sql . "<br />" . $error->getMessage();
 }
 
 
@@ -76,7 +76,7 @@ try {
                 </nav>
 
                 <?php if(isset($errorMsg)) { ?>
-                    <div class="notification width<?= $errorMsgType ?>" style="margin: 0 auto .75rem auto;"><?= $errorMsg ?></div>
+                    <div class="notification width <?= $errorMsgType ?>" style="margin: 0 auto .75rem auto;"><?= $errorMsg ?></div>
                 <?php } ?>
 
                 <?php //print_r($results); ?>
@@ -101,9 +101,9 @@ try {
                             <td><?= $result['date'] ?></td>
                             <td><?= $result['type'] ?></td>
                             <td>
-                                <span class="material-icons vam edit" onclick="editUser(<?= $result['id'] ?>);" title="Edit user"> edit </span>
+                                <a href="./new_password.php?user=<?= $result['id'] ?>" class="material-icons vam edit" title="Edit user"> edit </a>
                                 &nbsp;
-                                <span class="material-icons vam trash" onclick="deleteUser(<?= $result['id'] ?>);" title="Delete user"> delete_forever </span>
+                                <a class="material-icons vam trash" onclick="deleteUser(<?= $result['id'] ?>);" title="Delete user"> delete_forever </a>
                             </td>
 
                         </tr>
