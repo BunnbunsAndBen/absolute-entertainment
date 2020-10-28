@@ -11,7 +11,7 @@ $errorMsg = null;
 $errorMsgType = 'is-danger';
 
 $name = $email = $phone = $event_date = $location = $payment_type = $message = "";
-$name_err = $email_err = $phone_err = $event_date_err = $location_err = $payment_type = $message_err = "";
+$name_err = $email_err = $phone_err = $event_date_err = $location_err = $payment_type_err = $message_err = "";
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -51,6 +51,44 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $payment_type_err = "Please select a payment option.";
     }else {
         $payment_type = trim($_POST["payment_type"]);
+    }
+
+    if(!empty(trim($_POST["message"]))) {
+        $message = trim($_POST["message"]);
+    }
+
+    if(empty($name_err) && empty($email_err) && empty($phone_err) && empty($event_date_err) && empty($location_err) && empty($payment_type_err) && empty($message_err)) {
+
+        $new = array(
+            "name"  => $name,
+            "email" => $email,
+            "phone" => $phone,
+            "event_date" => $event_date,
+            "location" => $location,
+            "payment_type" => $payment_type,
+            "message" => $message
+        );
+        $sql = sprintf(
+                "INSERT INTO %s (%s) values (%s)",
+                "contact",
+                implode(", ", array_keys($new)),
+                ":" . implode(", :", array_keys($new))
+        );
+
+        try {
+            $statement = $connection->prepare($sql);
+            $statement->execute($new);
+            } catch(PDOException $error) {
+                $errorMsg = $sql . " " . $error->getMessage();
+            }
+            
+        if(!isset($error)) {
+            $name = $email = $phone = $event_date = $location = $payment_type = $message = "";
+            $errorMsgType = 'is-success';
+            $errorMsg = 'We will contact you soon after we review your information!';
+        }
+    }else {
+        //$errorMsg = 'Please fill out the form correctly.';
     }
 
 }
@@ -169,7 +207,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="field">
                         <label class="label">Extra info</label>
                         <div class="control">
-                            <textarea name="message <?php echo (!empty($message_err)) ? 'is-danger' : ''; ?>" class="textarea" placeholder="Message" value="<?= $message ?>"></textarea>
+                            <textarea name="message" class="textarea <?php echo (!empty($message_err)) ? 'is-danger' : ''; ?>" placeholder="Message" value="<?= $message ?>"></textarea>
                             <?php echo (!empty($message_err)) ? '<p class="help is-danger">'.$message_err.'</p>' : ''; ?>
                         </div>
                     </div>
