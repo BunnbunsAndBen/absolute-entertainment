@@ -111,7 +111,12 @@ try {
                     </tbody>
                 </table>
 
-                <a href="./register/" class="button is-outlined is-link">Create User</a>
+                <a href="./register/" class="button is-outlined is-link">
+                    <span class="icon">
+                        <span class="material-icons">add</span>
+                    </span>
+                    <span>Create User</span>
+                </a>
 
             </div>
 

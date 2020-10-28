@@ -97,7 +97,12 @@ if(!isset($results[0])) {
                     </tbody>
                 </table>
 
-                <a href="./create/" class="button is-outlined is-link">Create Review</a>
+                <a href="./create/" class="button is-outlined is-link">
+                    <span class="icon">
+                        <span class="material-icons">add</span>
+                    </span>
+                    <span>Create Review</span>
+                </a>
 
             </div>
 
