@@ -114,3 +114,22 @@ function getAllReviews($connection) {
     // return results
     return $result;
 }
+
+function getInbox($connection) {
+    // read from db table
+    try {
+        $sql = "SELECT * 
+                        FROM contact
+                        ORDER BY id DESC
+                        ";
+
+        $statement = $connection->prepare($sql);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    } catch(PDOException $error) {
+        $errorMsg = $sql . "<br />" . $error->getMessage();
+    }
+    // return results
+    return $result;
+}
