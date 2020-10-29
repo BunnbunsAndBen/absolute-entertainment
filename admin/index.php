@@ -45,12 +45,30 @@ if(!$loggedIn) {
 
             <div class="container main-container">
 
+                <div style="margin-bottom: 12px">
+                    <a href="./inbox/" class="button is-outlined is-link">
+                        <span class="icon">
+                            <span class="material-icons">inbox</span>
+                        </span>
+                        <span>Contact Inbox</span>
+                    </a>
+                </div>
                 <div style="margin-bottom: 4px">
-                    <a href="./reviews/" class="button is-outlined is-link">Reviews</a>
+                    <a href="./reviews/" class="button is-outlined is-link">
+                        <span class="icon">
+                            <span class="material-icons">comment</span>
+                        </span>
+                        <span>Reviews</span>
+                    </a>
                     <a href="./reviews/create/" class="button is-outlined is-link">Create Review</a>
                 </div>
                 <div>
-                    <a href="./users/" class="button is-outlined is-link">User Accounts</a>
+                    <a href="./users/" class="button is-outlined is-link">
+                        <span class="icon">
+                            <span class="material-icons">account_circle</span>
+                        </span>
+                        <span>User Accounts</span>
+                    </a>
                     <a href="./users/register/" class="button is-outlined is-link">Create User</a>
                 </div>
 
