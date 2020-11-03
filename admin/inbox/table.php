@@ -25,28 +25,6 @@ if(!isset($results[0])) {
 
 ?>
 <?php include_once($rootDir.'/header.inc.php'); ?>
-        <style>
-            .block:not(:last-child) {
-                margin-bottom: 0.75rem;
-            }
-
-            .name {
-                display: flex;
-                align-items: top;
-                margin-bottom: 0.25rem;
-            }
-
-            .event-date > span,
-            .payment > span,
-            .location > span {
-                vertical-align: middle;
-            }
-
-            .contacts {
-                display: flex;
-                align-items: center;
-            }
-        </style>
     </head>
     <body>
         
@@ -79,32 +57,39 @@ if(!isset($results[0])) {
 
                 <?php //print_r($results); ?>
 
+                <table class="table is-fullwidth">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Event Date</th>
+                            <th>Locatoin</th>
+                            <th>Message</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Payment Type</th>
+                            <th>Date</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
 <?php if(isset($results[0])) { foreach($results as $result) { ?>
-
-                        <div class="box r-row">
-
-                            <h1 class="name is-size-4"><span class="has-text-weight-bold"><?= $result['name'] ?></span>&nbsp;<span class="contact-num">[#<?= $result['id'] ?>]</span><span class="flex-grow"></span><a class="material-icons vam trash" onclick="deleteReview(<?= $result['id'] ?>);" title="Delete item"> delete_forever </a></h1>
+                        <tr class="r-row">
+                            <td><?= $result['id'] ?></td>
+                            <td><?= $result['name'] ?></td>
+                            <td><?= $result['event_date'] ?></td>
+                            <td><?= $result['location'] ?></td>
+                            <td><?= $result['message'] ?></td>
+                            <td><?= $result['phone'] ?></td>
+                            <td><a href="mailto:<?= $result['email'] ?>"><?= $result['email'] ?></a></td>
+                            <td><?= $result['payment_type'] ?></td>
+                            <td><?= $result['date'] ?></td>
+                            <td><a class="material-icons vam trash" onclick="deleteReview(<?= $result['id'] ?>);" title="Delete item"> delete_forever </a></td>
                             
-                            <div class="details block">
-                                <span class="event-date" title="Event Date"><span class="material-icons"> event </span>&nbsp;<span class="has-text-weight-semibold"><?= $result['event_date'] ?></span></span>
-                                <span class="location" title="Location"><span class="material-icons"> location_on </span>&nbsp;<span class="has-text-weight-semibold"><?= $result['location'] ?></span></span>
-                                &nbsp;
-                                <span class="payment" title="Payment Type"><span class="material-icons"> payment </span>&nbsp;<span class="has-text-weight-semibold"><?= $result['payment_type'] ?></span></span>
-                            </div>
-
-                            <div class="message block" title="Extra Info">
-                                <p><?= $result['message'] ?>
-                            </div>
-
-                            <div class="contacts block">
-                                <span><a href="tel:<?= $result['phone'] ?>"><?= $result['phone'] ?></a></span>&nbsp;&nbsp;&bullet;&nbsp;&nbsp;<span><a href="mailto:<?= $result['email'] ?>"><?= $result['email'] ?></a></span>
-                                <span class="flex-grow"></span>
-                                <span title="Created at: <?= $result['date'] ?>"><?= $result['date'] ?></span>
-                            </div>
-
-                        </div>
-
+                        </tr>
 <?php } } ?>
+                    </tbody>
+                </table>
 
                 <a href="<?= $rootUrl ?>contact/" class="button is-outlined is-link">
                     <span class="icon">
@@ -113,7 +98,7 @@ if(!isset($results[0])) {
                     <span>Create</span>
                 </a>
                 <br><br>
-                <a href="./table.php">Table View</a>
+                <a href="./">Normal View</a>
 
             </div><!-- /container -->
 
@@ -122,8 +107,8 @@ if(!isset($results[0])) {
         <?php include($rootDir.'/footer.inc.php'); ?>
         <script>
 function deleteReview(id) {
-    if(confirm("Delete item #"+ id +"?")) {
-        console.log('Delete item '+ id);
+    if(confirm("Delete contact #"+ id +"?")) {
+        console.log('Delete contact '+ id);
         var xhttp = new XMLHttpRequest();
         xhttp.onload = function() {
             var data = JSON.parse(xhttp.responseText);
