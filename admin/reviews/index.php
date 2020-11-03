@@ -97,7 +97,7 @@ if(!isset($results[0])) {
         <?php include($rootDir.'/footer.inc.php'); ?>
         <script>
 function deleteReview(id) {
-    if (confirm("Delete review #"+ id +"?")) {
+    if(confirm("Delete review #"+ id +"?")) {
         console.log('Delete review '+ id);
         var xhttp = new XMLHttpRequest();
         xhttp.onload = function() {
@@ -110,7 +110,7 @@ function deleteReview(id) {
         };
         xhttp.open('GET', '<?= $rootApiUrl ?>delete.review.php?id='+id, true);
         xhttp.send();
-    } else {
+    }else {
         
     }
 }
