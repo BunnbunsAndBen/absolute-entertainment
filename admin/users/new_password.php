@@ -23,7 +23,12 @@ if(empty(trim($_REQUEST["user"]))) {
     $user_id_err = true;
     $errorMsg = "No user selected";
 }elseif(userIdExists($connection, $_REQUEST['user'])) {
-    $user_id = trim($_REQUEST["user"]);
+    if(getUserById($connection, $_SESSION['id'])['type'] != 'admin' && getUserById($connection, $_GET['user'])['type'] == 'admin') {
+        $user_id_err = true;
+        $errorMsg = "Only admin can change this";
+    }else {
+        $user_id = trim($_REQUEST["user"]);
+    }
 }else {
     $user_id_err = true;
     $errorMsg = "User not found";
@@ -60,7 +65,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             "id" => $user_id
         );
         $sql = "
-        UPDATE userss SET password=:password WHERE id=:id
+        UPDATE users SET password=:password WHERE id=:id
         ";
 
         try {
@@ -113,6 +118,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="notification width <?= $errorMsgType ?>" style="margin: 0 auto .75rem auto;"><?= $errorMsg ?></div>
                 <?php } ?>
 
+<?php if(!isset($user_id_err)) { ?>
+
                 <form method="post" class="form width box">
 
                     <div class="field">
@@ -146,6 +153,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
 
                 </form>
+
+<?php }else { ?>
+
+                <div class="block has-text-centered">
+                    <a href="./" class="button">Cancel</a>
+                </div>
+
+<?php } ?>
 
             </div><!-- /container -->
 
