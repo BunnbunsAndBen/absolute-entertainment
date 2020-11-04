@@ -11,13 +11,15 @@ if(!$loggedIn) {
     exit;
 }
 
+if($_SESSION['id'] == $_GET['id']) {
+    $deleteError = "Cannot delete current user";
+}
+
 if(getUserById($connection, $_GET['id'])['type'] == 'admin') {
     $deleteError = "Cannot delete admin user";
 }
 
-if($_SESSION['id'] == $_GET['id']) {
-    $deleteError = "Cannot delete current user";
-}
+
 
 if(isset($deleteError)) {
     $result = array("error" => $deleteError);
