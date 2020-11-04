@@ -41,11 +41,10 @@
                     <div class="navbar-end">
                         <div class="navbar-item">
                             <div class="buttons">
-                                <a href="<?= $rootUrl ?>admin/inbox/" class="button is-primary">
+                                <a href="<?= $rootUrl ?>admin/inbox/" class="button <?php echo ($pageTitle == 'Contact Inbox') ? 'is-primary' : 'is-inverted'; ?>" title="Contact Inbox">
                                     <span class="icon">
                                         <span class="material-icons">inbox</span>
                                     </span>
-                                    <strong>Contact Inbox</strong>
                                 </a>
 <?php if($loggedIn) { ?>
                             </div>
