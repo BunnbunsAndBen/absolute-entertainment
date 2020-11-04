@@ -54,9 +54,6 @@
                                 <?= escape($_SESSION['name']); ?>
                             </a>
                             <div class="navbar-dropdown is-boxed is-right">
-                                <a class="navbar-item <?php echo ($pageTitle == 'Admin Portal') ? 'is-active' : ''; ?>" href="<?= $rootUrl ?>admin">
-                                    Admin Portal
-                                </a>
                                 <a class="navbar-item" href="<?= $rootUrl ?>">
                                     Exit Admin Portal
                                 </a>
