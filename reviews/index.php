@@ -20,9 +20,20 @@ if(!isset($results[0])) {
 ?>
 <?php include_once($rootDir.'/header.inc.php'); ?>
         <style>
+            .card {
+                background-color: #061b1f;
+                border-color: #0f3d46;
+                margin-bottom: .5rem;
+            }
+
+            .box .inner {
+                padding: .5rem;
+            }
+
             .stars {
                 margin-bottom: .5rem;
             }
+            
             .unfilledStar {
                 color: rgba(245, 245, 245, .55);
             }
@@ -52,8 +63,8 @@ if(!isset($results[0])) {
 
             <?php if(isset($results[0])) { foreach($results as $row) { ?>
 
-                <div class="card has-background-grey-darker" style="margin-bottom: .5rem">
-                    <div class="card-content">
+                <div class="box">
+                    <div class="inner">
                         <div class="stars has-text-light">
                             <?php
                             $i = 0;
