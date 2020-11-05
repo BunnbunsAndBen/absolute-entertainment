@@ -7,15 +7,16 @@ include_once($rootDir.'/db.inc.php');
 
 // logged in?
 if(!$loggedIn) {
-    header('Location: '.$rootUrl.'login/?return=admin/users/new_password.php');
+    header('Location: '.$rootUrl.'login/?return=admin/users/edit.php');
     exit;
 }
 
-$pageTitle = 'New Password';
+$pageTitle = 'Edit User';
 
 $errorMsg = null;
 $errorMsgType = 'is-danger';
 
+$userInfo = "";
 $password = $confirm_password = "";
 $email_hash_err = $password_err = $confirm_password_err = "";
 
@@ -23,7 +24,8 @@ if(empty(trim($_REQUEST["user"]))) {
     $user_id_err = true;
     $errorMsg = "No user selected";
 }elseif(userIdExists($connection, $_REQUEST['user'])) {
-    if(getUserById($connection, $_SESSION['id'])['type'] != 'admin' && getUserById($connection, $_GET['user'])['type'] == 'admin') {
+    $userInfo = getUserById($connection, $_REQUEST['user']);
+    if(getUserById($connection, $_SESSION['id'])['type'] != 'admin' && $userInfo['type'] == 'admin') {
         $user_id_err = true;
         $errorMsg = "Only admin can change this";
     }else {
@@ -94,7 +96,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             
             <?php include($rootDir.'/admin/navbar.inc.php'); ?>
 
-            <section class="hero is-primary is-bold" style="background: #21768c url('<?= $rootAssetsUrl ?>images/hero.jpg') center center;">
+            <!-- <section class="hero is-primary is-bold" style="background: #21768c url('<?= $rootAssetsUrl ?>images/hero.jpg') center center;">
             <div class="hero-body">
                 <div class="container">
                     <h1 class="title">
@@ -102,7 +104,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     </h1>
                 </div>
             </div>
-            </section>
+            </section> -->
+            <br>
 
             <div class="container main-container">
 
@@ -119,6 +122,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 <?php } ?>
 
 <?php if(!isset($user_id_err)) { ?>
+
+                <div class="box width flex">
+                    <span class="material-icons is-size-2" style="margin-right: 8px" alt="#<?= $userInfo['id'] ?>">person</span>
+                    <div>
+                        <h1 class="is-size-5"><span title="#<?= $userInfo['id'] ?>"><?= $userInfo['name'] ?></span></h1>
+                        <div class=""><?= $userInfo['email'] ?></div>
+                    </div>
+                </div>
 
                 <form method="post" class="form width box">
 

@@ -87,7 +87,7 @@ try {
                             <td><?= $result['date'] ?></td>
                             <td><?= $result['type'] ?></td>
                             <td>
-                                <a href="./new_password.php?user=<?= $result['id'] ?>" class="material-icons vam edit" title="Edit user"> edit </a>
+                                <a href="./edit.php?user=<?= $result['id'] ?>" class="material-icons vam edit" title="Edit user"> edit </a>
                                 &nbsp;
                                 <a class="material-icons vam trash" onclick="deleteUser(<?= $result['id'] ?>);" title="Delete user"> delete_forever </a>
                             </td>
