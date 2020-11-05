@@ -13,6 +13,10 @@
     flex-grow: 1;
 }
 
+.mb {
+    margin-bottom: 1rem;
+}
+
 .pageHeight {
     min-height: calc(100vh - 12.25rem);
 }

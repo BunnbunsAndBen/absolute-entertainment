@@ -17,19 +17,21 @@ $errorMsg = null;
 $errorMsgType = 'is-danger';
 
 $userInfo = "";
+$userIsSame = ($_SESSION['id'] == trim($_REQUEST['user']));
+
 $password = $confirm_password = "";
 $email_hash_err = $password_err = $confirm_password_err = "";
 
-if(empty(trim($_REQUEST["user"]))) {
+if(empty(trim($_REQUEST['user']))) {
     $user_id_err = true;
     $errorMsg = "No user selected";
-}elseif(userIdExists($connection, $_REQUEST['user'])) {
-    $userInfo = getUserById($connection, $_REQUEST['user']);
+}elseif(userIdExists($connection, trim($_REQUEST['user']))) {
+    $userInfo = getUserById($connection, trim($_REQUEST['user']));
     if(getUserById($connection, $_SESSION['id'])['type'] != 'admin' && $userInfo['type'] == 'admin') {
         $user_id_err = true;
-        $errorMsg = "Only admin can change this";
+        $errorMsg = "Only admin can change this user";
     }else {
-        $user_id = trim($_REQUEST["user"]);
+        $user_id = trim($_REQUEST['user']);
     }
 }else {
     $user_id_err = true;
@@ -124,11 +126,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php if(!isset($user_id_err)) { ?>
 
                 <div class="box width flex">
-                    <span class="material-icons is-size-2" style="margin-right: 8px" alt="#<?= $userInfo['id'] ?>">person</span>
+                    <span class="material-icons is-size-2" style="margin-right: .5rem" alt="#<?= $userInfo['id'] ?>">person</span>
                     <div>
-                        <h1 class="is-size-5"><span title="#<?= $userInfo['id'] ?>"><?= $userInfo['name'] ?></span></h1>
+                        <h1 class="is-size-5"><span title="#<?= $userInfo['id'] ?>"><?= $userInfo['name'] ?><span><?php echo ($userIsSame) ? ' (You)' : ''; ?></span></span></h1>
                         <div class=""><?= $userInfo['email'] ?></div>
                     </div>
+                </div>
+
+                <div class="width">
+                    <h1 class="is-size-4 mb has-text-light has-text-weight-semibold">New Password</h1>
                 </div>
 
                 <form method="post" class="form width box">
