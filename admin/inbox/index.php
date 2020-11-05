@@ -81,7 +81,7 @@ if(!isset($results[0])) {
 
 <?php if(isset($results[0])) { foreach($results as $result) { ?>
 
-                        <div class="box r-row">
+                        <div class="box block r-row">
 
                             <h1 class="name is-size-4"><span class="has-text-weight-bold"><?= $result['name'] ?></span>&nbsp;<span class="contact-num">[#<?= $result['id'] ?>]</span><span class="flex-grow"></span><a class="material-icons vam trash" onclick="deleteReview(<?= $result['id'] ?>);" title="Delete item"> delete_forever </a></h1>
                             
@@ -106,14 +106,17 @@ if(!isset($results[0])) {
 
 <?php } } ?>
 
-                <a href="<?= $rootUrl ?>contact/" class="button is-outlined is-link">
-                    <span class="icon">
-                        <span class="material-icons">add</span>
-                    </span>
-                    <span>Create</span>
-                </a>
-                <br><br>
-                <a href="./table.php">Table View</a>
+                <div style="margin: 1rem 0;">
+                    <a href="<?= $rootUrl ?>contact/" class="button is-outlined is-link">
+                        <span class="icon">
+                            <span class="material-icons">add</span>
+                        </span>
+                        <span>Create</span>
+                    </a>
+                </div>
+                <div>
+                    <a href="./table.php">Table View</a>
+                </div>
 
             </div><!-- /container -->
 

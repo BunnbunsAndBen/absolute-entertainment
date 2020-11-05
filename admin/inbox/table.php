@@ -91,14 +91,17 @@ if(!isset($results[0])) {
                     </tbody>
                 </table>
 
-                <a href="<?= $rootUrl ?>contact/" class="button is-outlined is-link">
-                    <span class="icon">
-                        <span class="material-icons">add</span>
-                    </span>
-                    <span>Create</span>
-                </a>
-                <br><br>
-                <a href="./">Normal View</a>
+                <div style="margin: 1rem 0;">
+                    <a href="<?= $rootUrl ?>contact/" class="button is-outlined is-link">
+                        <span class="icon">
+                            <span class="material-icons">add</span>
+                        </span>
+                        <span>Create</span>
+                    </a>
+                </div>
+                <div>
+                    <a href="./">Normal View</a>
+                </div>
 
             </div><!-- /container -->
 
