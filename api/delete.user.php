@@ -23,7 +23,6 @@ if(getUserById($connection, $_GET['id'])['type'] == 'admin') {
 
 if(isset($deleteError)) {
     $result = array("error" => $deleteError);
-    // page //
     header('Content-Type: application/json');
     echo json_encode($result, JSON_PRETTY_PRINT);
     exit;
@@ -45,10 +44,10 @@ try {
 
 if(!isset($error)) {
     $result = array("error" => "ok");
+}else {
+    $result = array("error" => $error);
 }
 header('Content-Type: application/json');
-
-echo json_encode($err, JSON_PRETTY_PRINT);
 
 echo json_encode($result, JSON_PRETTY_PRINT);
 ?>
