@@ -9,7 +9,6 @@ if(!$loggedIn) {
     exit;
 }
 
-//read from db table //
 try {
     $sql = "DELETE 
                 FROM contact
@@ -20,13 +19,15 @@ try {
     $statement->bindParam(':id', $_GET['id'], PDO::FETCH_ASSOC);
     $statement->execute();
 } catch(PDOException $error) {
-    echo $sql . "<br />" . $error->getMessage();
+    $err = $error->getMessage();
 }
+
 if(!isset($error)) {
     $result = array("error" => "ok");
 }
-// page //
 header('Content-Type: application/json');
+
+echo json_encode($err, JSON_PRETTY_PRINT);
 
 echo json_encode($result, JSON_PRETTY_PRINT);
 ?>
