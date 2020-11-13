@@ -65,19 +65,19 @@ nav.navbar {
     cursor: pointer;
 }
 
-.r-row:hover .trash {
+.r-row .trash {
     color: rgb(255, 81, 81, .88);
 }
 
-.r-row:hover .trash:hover {
+.r-row .trash:hover {
     color: rgb(255, 81, 81, .92);
 }
 
-.r-row:hover .edit {
+.r-row .edit {
     color: rgba(240, 240, 240, 0.88);
 }
 
-.r-row:hover .edit:hover {
+.r-row .edit:hover {
     color: rgba(240, 240, 240, 0.92);
 }
 
