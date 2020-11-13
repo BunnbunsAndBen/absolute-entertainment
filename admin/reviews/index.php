@@ -76,7 +76,7 @@ if(!isset($results[0])) {
                             <td><?= $result['content'] ?></td>
                             <td><?= $result['name'] ?></td>
                             <td><?= $result['date'] ?></td>
-                            <td><a class="material-icons vam trash" onclick="deleteReview(<?= $result['id'] ?>);" title="Delete review"> delete_forever </a></td>
+                            <td><a class="material-icons vam trash" onclick="deleteReview(<?= $result['id'] ?>);" title="Delete review"> delete </a></td>
                             
                         </tr>
 <?php } } ?>

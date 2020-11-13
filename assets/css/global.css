@@ -60,25 +60,17 @@ nav.navbar {
 }
 
 .trash, .edit {
-    color: transparent;
+    color: rgba(255, 255, 255, 0.7);
     font-size: 1.25rem!important;
     cursor: pointer;
 }
 
-.r-row .trash {
+.r-row .trash:hover {
     color: rgb(255, 81, 81, .88);
 }
 
-.r-row .trash:hover {
-    color: rgb(255, 81, 81, .92);
-}
-
-.r-row .edit {
-    color: rgba(240, 240, 240, 0.88);
-}
-
 .r-row .edit:hover {
-    color: rgba(240, 240, 240, 0.92);
+    color: rgba(240, 240, 240, 0.98);
 }
 
 footer.footer {

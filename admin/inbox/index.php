@@ -83,7 +83,7 @@ if(!isset($results[0])) {
 
                         <div class="box block r-row">
 
-                            <h1 class="name is-size-4"><span class="has-text-weight-bold"><?= $result['name'] ?></span>&nbsp;<span class="contact-num">[#<?= $result['id'] ?>]</span><span class="flex-grow"></span><a class="material-icons vam trash" onclick="deleteReview(<?= $result['id'] ?>);" title="Delete item"> delete_forever </a></h1>
+                            <h1 class="name is-size-4"><span class="has-text-weight-bold"><?= $result['name'] ?></span>&nbsp;<span class="contact-num">[#<?= $result['id'] ?>]</span><span class="flex-grow"></span><a class="material-icons vam trash" onclick="deleteReview(<?= $result['id'] ?>);" title="Delete item"> delete </a></h1>
                             
                             <div class="details block">
                                 <span class="event-date" title="Event Date"><span class="material-icons"> event </span>&nbsp;<span class="has-text-weight-semibold"><?= $result['event_date'] ?></span></span>

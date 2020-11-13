@@ -84,7 +84,7 @@ if(!isset($results[0])) {
                             <td><a href="mailto:<?= $result['email'] ?>"><?= $result['email'] ?></a></td>
                             <td><?= $result['payment_type'] ?></td>
                             <td><?= $result['date'] ?></td>
-                            <td><a class="material-icons vam trash" onclick="deleteReview(<?= $result['id'] ?>);" title="Delete item"> delete_forever </a></td>
+                            <td><a class="material-icons vam trash" onclick="deleteReview(<?= $result['id'] ?>);" title="Delete item"> delete </a></td>
                             
                         </tr>
 <?php } } ?>

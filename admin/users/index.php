@@ -89,7 +89,7 @@ try {
                             <td>
                                 <a href="./edit.php?user=<?= $result['id'] ?>" class="material-icons vam edit" title="Edit user"> edit </a>
                                 &nbsp;
-                                <a class="material-icons vam trash" onclick="deleteUser(<?= $result['id'] ?>);" title="Delete user"> delete_forever </a>
+                                <a class="material-icons vam trash" onclick="deleteUser(<?= $result['id'] ?>);" title="Delete user"> delete </a>
                             </td>
 
                         </tr>

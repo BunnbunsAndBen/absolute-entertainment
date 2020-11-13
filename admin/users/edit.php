@@ -124,7 +124,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 <?php } ?>
 
 <?php if(!isset($user_id_err)) { ?>
-
+                
+                <div style="margin-top: 1.75rem"></div>
+                
                 <div class="box width flex">
                     <span class="material-icons is-size-2" style="margin-right: .5rem" alt="#<?= $userInfo['id'] ?>">person</span>
                     <div>
