@@ -57,6 +57,8 @@ nav.navbar {
 
 .main-container {
     margin-top: 2rem;
+    padding: 0 .75rem;
+    box-sizing: border-box;
 }
 
 .trash, .edit {
