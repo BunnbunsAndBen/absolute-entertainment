@@ -37,6 +37,9 @@ if(!isset($results[0])) {
             .unfilledStar {
                 color: rgba(245, 245, 245, .55);
             }
+            .box:last-child {
+                margin-bottom: 8rem;
+            }
         </style>
     </head>
     <body>

@@ -208,6 +208,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 </form>
 
+                <div class="contact-block block box width is-size-4">
+                    <div class="columns">
+                        <span class="column flex">
+                            <span class="material-icons is-size-2 has-text-grey" style="margin-right: .5rem"> phone </span>
+                            <a class="has-text-weight-semibold has-text-grey" href="tel:18888092222">1-888-809-2222</a>
+                        </span>
+                        <span class="column flex">
+                            <span class="material-icons is-size-2 has-text-grey" style="margin-right: .5rem"> email </span>
+                            <a class="has-text-weight-semibold has-text-grey" href="mailto:sales@absoluteentertainment.com">sales@absoluteentertainment.com</a>
+                        </span>
+                    </div>
+                </div>
+
             </div><!-- /container -->
 
         </div><!-- /pageHeight -->
